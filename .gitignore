@@ -1,0 +1,15 @@
+# Local-only configuration (preview server etc.)
+.claude/
+
+# macOS
+.DS_Store
+
+# Editor backups
+*~
+*.swp
+
+# Node (if ever used)
+node_modules/
+
+# Logs
+*.log

@@ -1,0 +1,69 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+site_url: https://alphamedicalclinic.netlify.app
+display_url: https://alphamedicalclinic.netlify.app
+logo_url: https://alphamedicalclinic.netlify.app/images/logo-cropped.png
+
+publish_mode: simple
+locale: en
+
+collections:
+  - name: articles
+    label: "บทความ Journal"
+    label_singular: "บทความ"
+    files:
+      - file: articles.json
+        label: "รายการบทความทั้งหมด"
+        name: list
+        fields:
+          - label: "บทความ"
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            collapsed: true
+            fields:
+              - { label: "หัวข้อบทความ", name: title, widget: string }
+              - label: "หมวด"
+                name: category
+                widget: select
+                options:
+                  - "Anti-Aging"
+                  - "Aesthetic"
+                  - "Dermatology"
+                  - "Treatment"
+                  - "Skincare"
+                  - "Wellness"
+                  - "News"
+                default: "Treatment"
+              - { label: "เวลาอ่าน", name: read_time, widget: string, default: "5 min read" }
+              - { label: "วันที่เผยแพร่", name: date, widget: datetime, required: false }
+              - { label: "รูปภาพประกอบ", name: image, widget: image, required: false, hint: "ถ้าไม่ใส่ จะใช้ตัวอักษรเป็น placeholder" }
+              - { label: "ตัวอักษร placeholder", name: letter, widget: string, default: "A", required: false, hint: "ใช้เมื่อไม่มีรูปภาพ — ตัวอักษรเดียว เช่น A / B / G" }
+              - { label: "ข้อความย่อ (แสดงบนการ์ด)", name: excerpt, widget: text }
+              - { label: "เนื้อหาเต็ม (สำหรับอนาคต)", name: body, widget: markdown, required: false }
+
+  - name: info
+    label: "ข้อมูลคลินิก"
+    label_singular: "ข้อมูล"
+    files:
+      - file: _data/site.json
+        label: "ข้อมูลทั่วไป"
+        name: general
+        fields:
+          - { label: "ชื่อคลินิก", name: clinic_name, widget: string, default: "Alpha Medical Clinic" }
+          - { label: "Tagline (อังกฤษ)", name: tagline, widget: string, default: "Inspiring Confidence" }
+          - { label: "Tagline (ไทย)", name: tagline_th, widget: text, default: "สร้างความงามอย่างสมดุล จากภายในสู่ภายนอก" }
+          - { label: "ที่อยู่", name: address, widget: text }
+          - { label: "เบอร์โทร 1", name: phone1, widget: string }
+          - { label: "เบอร์โทร 2", name: phone2, widget: string, required: false }
+          - { label: "Email", name: email, widget: string }
+          - { label: "เวลาทำการ", name: hours, widget: string, default: "Wed – Mon · 10:00 – 19:00" }
+          - { label: "LINE link", name: line_url, widget: string }
+          - { label: "Facebook", name: facebook, widget: string, required: false }
+          - { label: "Instagram", name: instagram, widget: string, required: false }
+          - { label: "TikTok", name: tiktok, widget: string, required: false }
