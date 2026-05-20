@@ -28,6 +28,7 @@ collections:
             collapsed: true
             fields:
               - { label: "หัวข้อบทความ", name: title, widget: string }
+              - { label: "Slug (URL ของบทความ)", name: slug, widget: string, hint: "URL ของบทความ — ภาษาอังกฤษตัวเล็ก ใช้ขีดคั่น เช่น 'thread-lift-guide' จะได้ URL = /article.html?slug=thread-lift-guide", pattern: ["^[a-z0-9-]+$", "ใช้ตัวอักษร a-z, ตัวเลข, และ - เท่านั้น"] }
               - label: "หมวด"
                 name: category
                 widget: select

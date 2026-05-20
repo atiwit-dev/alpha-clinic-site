@@ -226,15 +226,20 @@ fetch('articles.json', { cache: 'no-cache' })
       const media = a.image
         ? `<img src="${escapeHtml(a.image)}" alt="${escapeHtml(a.title)}" loading="lazy" />`
         : `<span class="article-media-letter">${escapeHtml(a.letter || 'A')}</span>`;
+      const href = a.slug
+        ? `article.html?slug=${encodeURIComponent(a.slug)}`
+        : `article.html?i=${i}`;
       return `
         <article class="article-card">
-          <div class="article-media article-media-${variant}" aria-hidden="true">${media}</div>
-          <div class="article-body">
-            <p class="article-meta">${escapeHtml(a.category || '')}${a.read_time ? ' · ' + escapeHtml(a.read_time) : ''}</p>
-            <h3>${escapeHtml(a.title)}</h3>
-            <p>${escapeHtml(a.excerpt || '')}</p>
-            <a href="#" class="link-arrow">Read article →</a>
-          </div>
+          <a class="article-card-link" href="${href}">
+            <div class="article-media article-media-${variant}" aria-hidden="true">${media}</div>
+            <div class="article-body">
+              <p class="article-meta">${escapeHtml(a.category || '')}${a.read_time ? ' · ' + escapeHtml(a.read_time) : ''}</p>
+              <h3>${escapeHtml(a.title)}</h3>
+              <p>${escapeHtml(a.excerpt || '')}</p>
+              <span class="link-arrow">Read article →</span>
+            </div>
+          </a>
         </article>
       `;
     }).join('');
