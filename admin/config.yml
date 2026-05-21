@@ -81,7 +81,7 @@ collections:
                 default: "Treatment"
               - { label: "เวลาอ่าน", name: read_time, widget: string, default: "5 min read" }
               - { label: "วันที่เผยแพร่", name: date, widget: datetime, required: false }
-              - { label: "รูปภาพประกอบ", name: image, widget: image, required: false, hint: "📐 แนะนำ 1600×900px (อัตราส่วน 16:9) · ฟอร์แมต .webp หรือ .jpg · ขนาดไฟล์ <500KB · จะถูกครอปให้เต็มกรอบบนการ์ด" }
+              - { label: "รูปภาพประกอบ", name: image, widget: image, required: false, hint: "📐 แนะนำ 1600×900px (16:9 แนวนอน) · ❌ ห้ามใช้ QR code / โลโก้ / รูปสี่เหลี่ยมจัตุรัส / รูปแนวตั้ง — ระบบจะย่อให้พอดีแต่ดูไม่สวย · ✅ ใช้รูปคน, สถานที่, ทรีตเมนต์ · .webp/.jpg <500KB" }
               - { label: "ตัวอักษร placeholder", name: letter, widget: string, default: "A", required: false, hint: "ใช้เมื่อไม่มีรูปภาพ — ตัวอักษรเดียว เช่น A / B / G" }
               - { label: "ข้อความย่อ (แสดงบนการ์ด)", name: excerpt, widget: text, hint: "💬 ความยาวเหมาะสม 100-160 ตัวอักษร · เป็นข้อความ teaser ของบทความ · จะแสดงใต้หัวข้อบนการ์ด" }
               - { label: "เนื้อหาเต็ม (Markdown)", name: body, widget: markdown, required: false, hint: "📝 เขียนเป็น Markdown — ใช้ปุ่ม toolbar (Bold, Italic, List, Image, Link) ใส่รูปได้ในเนื้อหา (รูปในบทความ แนะนำ 1600×900px) · จะแสดงที่ /article.html?slug=..." }

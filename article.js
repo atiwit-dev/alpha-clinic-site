@@ -59,8 +59,18 @@
         } catch (e) { $date.textContent = ''; }
       }
 
-      // Hero image
+      // Hero image — detect aspect ratio and fit appropriately
       if (article.image) {
+        const probe = new Image();
+        probe.onload = () => {
+          const ratio = probe.naturalWidth / probe.naturalHeight;
+          // 1.3 ≈ 4:3, 1.78 ≈ 16:9, 2.0 = wide. Anything else (portrait/square/QR) gets "contain"
+          if (ratio < 1.4 || ratio > 2.6) {
+            $hero.classList.add('article-hero-contain');
+          }
+        };
+        probe.onerror = () => { /* still render, default cover */ };
+        probe.src = article.image;
         $hero.innerHTML = `<img src="${escapeHtml(article.image)}" alt="${escapeHtml(article.title)}" />`;
       } else {
         const variant = (Math.abs(hashCode(article.slug || article.title || '')) % 3) + 1;
