@@ -1,0 +1,38 @@
+{
+  "eyebrow": "Our Treatments",
+  "title_line1": "Curated treatments,",
+  "title_line2": "tailored outcomes.",
+  "items": [
+    {
+      "tag": "01 / Anti-Aging",
+      "title": "ฟื้นฟูวัยและริ้วรอย",
+      "list": [
+        { "name": "Thread Lift" },
+        { "name": "PRP — Platelet-Rich Plasma" },
+        { "name": "Thermage FLX" },
+        { "name": "Botox" },
+        { "name": "Filler" }
+      ]
+    },
+    {
+      "tag": "02 / Aesthetic",
+      "title": "เสริมความงามเฉพาะบุคคล",
+      "list": [
+        { "name": "Alpha Gold — Signature Treatment" },
+        { "name": "EMFACE" },
+        { "name": "Profhilo / Restylane Skinboosters" },
+        { "name": "Customized Beauty Plan" }
+      ]
+    },
+    {
+      "tag": "03 / Dermatology",
+      "title": "ผิวพรรณและเลเซอร์",
+      "list": [
+        { "name": "Permanent Laser Hair Removal" },
+        { "name": "Ulthera SPT" },
+        { "name": "Discovery Pico Laser" },
+        { "name": "StraWalker PQX" }
+      ]
+    }
+  ]
+}

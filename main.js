@@ -274,6 +274,73 @@ fetch('_data/doctor.json', { cache: 'no-cache' })
   })
   .catch(() => { /* ignore */ });
 
+// About section
+fetch('_data/about.json', { cache: 'no-cache' })
+  .then(r => r.ok ? r.json() : null)
+  .then(d => {
+    if (!d) return;
+    _setText('aboutEyebrow', d.eyebrow);
+    if (d.title_line1 || d.title_line2) {
+      _setHtml('aboutTitle', `${_esc(d.title_line1 || '')} <em>${_esc(d.title_line2 || '')}</em>.`);
+    }
+    _setText('aboutLead', d.lead);
+    _setText('aboutBody', d.body);
+    if (Array.isArray(d.pills) && d.pills.length) {
+      const ul = document.getElementById('aboutPills');
+      if (ul) ul.innerHTML = d.pills.map(p => `<li>${_esc(p.text || p)}</li>`).join('');
+    }
+  })
+  .catch(() => { /* ignore */ });
+
+// Services section
+fetch('_data/services.json', { cache: 'no-cache' })
+  .then(r => r.ok ? r.json() : null)
+  .then(d => {
+    if (!d) return;
+    _setText('servicesEyebrow', d.eyebrow);
+    if (d.title_line1 || d.title_line2) {
+      _setHtml('servicesTitle', `${_esc(d.title_line1 || '')}<br/><em>${_esc(d.title_line2 || '')}</em>`);
+    }
+    if (Array.isArray(d.items) && d.items.length) {
+      const grid = document.getElementById('servicesGrid');
+      if (grid) {
+        grid.innerHTML = d.items.map(s => {
+          const list = Array.isArray(s.list) ? s.list.map(i => `<li>${_esc(i.name || i)}</li>`).join('') : '';
+          return `
+            <article class="service-card">
+              <p class="service-tag">${_esc(s.tag || '')}</p>
+              <h3>${_esc(s.title || '')}</h3>
+              <ul>${list}</ul>
+              <a href="#contact" class="link-arrow">ปรึกษาแพทย์ →</a>
+            </article>
+          `;
+        }).join('');
+      }
+    }
+  })
+  .catch(() => { /* ignore */ });
+
+// Signature (Alpha Gold) section
+fetch('_data/signature.json', { cache: 'no-cache' })
+  .then(r => r.ok ? r.json() : null)
+  .then(d => {
+    if (!d) return;
+    _setText('signatureEyebrow', d.eyebrow);
+    if (d.title_line1 || d.title_line2) {
+      _setHtml('signatureTitle', `${_esc(d.title_line1 || '')} <em>${_esc(d.title_line2 || '')}</em>`);
+    }
+    _setText('signatureLead', d.lead);
+    if (Array.isArray(d.facts) && d.facts.length) {
+      const grid = document.getElementById('signatureFacts');
+      if (grid) {
+        grid.innerHTML = d.facts.map(f => `<div><span class="kv-k">${_esc(f.k)}</span><span class="kv-v">${_esc(f.v)}</span></div>`).join('');
+      }
+    }
+    _setText('signatureCta', d.cta_text);
+    _setAttr('signatureCta', 'href', d.cta_url);
+  })
+  .catch(() => { /* ignore */ });
+
 // Reviews
 fetch('_data/reviews.json', { cache: 'no-cache' })
   .then(r => r.ok ? r.json() : null)

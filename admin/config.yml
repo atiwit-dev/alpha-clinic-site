@@ -80,6 +80,71 @@ collections:
           - { label: "ปุ่มหลัก — ลิงก์", name: cta_primary_url, widget: string, default: "https://lin.ee/1i7Qgpv" }
           - { label: "ปุ่มรอง — ข้อความ", name: cta_secondary_text, widget: string, default: "Explore Treatments →" }
 
+  - name: about
+    label: "ℹ️ About (เกี่ยวกับคลินิก)"
+    files:
+      - file: _data/about.json
+        label: "เนื้อหา About section"
+        name: about_content
+        fields:
+          - { label: "ป้ายเล็กบน (Eyebrow)", name: eyebrow, widget: string, default: "About Alpha" }
+          - { label: "หัวข้อใหญ่ บรรทัด 1", name: title_line1, widget: string, default: "Premium care, designed around" }
+          - { label: "หัวข้อใหญ่ บรรทัด 2 (italic ทอง)", name: title_line2, widget: string, default: "you" }
+          - { label: "ข้อความแนะนำ (Lead)", name: lead, widget: text }
+          - { label: "ข้อความเสริม (Body)", name: body, widget: text }
+          - label: "Pills (จุดเด่น 3 อัน)"
+            name: pills
+            widget: list
+            summary: "{{fields.text}}"
+            fields:
+              - { label: "ข้อความ", name: text, widget: string }
+
+  - name: services
+    label: "🏥 Services (บริการ)"
+    files:
+      - file: _data/services.json
+        label: "การ์ดบริการ"
+        name: services_content
+        fields:
+          - { label: "ป้ายเล็กบน (Eyebrow)", name: eyebrow, widget: string, default: "Our Treatments" }
+          - { label: "หัวข้อ บรรทัด 1", name: title_line1, widget: string }
+          - { label: "หัวข้อ บรรทัด 2 (italic ทอง)", name: title_line2, widget: string }
+          - label: "การ์ดบริการ (3 อัน)"
+            name: items
+            widget: list
+            summary: "{{fields.tag}}"
+            min: 1
+            fields:
+              - { label: "แท็กการ์ด (เช่น 01 / Anti-Aging)", name: tag, widget: string }
+              - { label: "หัวข้อการ์ด", name: title, widget: string }
+              - label: "รายการบริการ"
+                name: list
+                widget: list
+                summary: "{{fields.name}}"
+                fields:
+                  - { label: "ชื่อบริการ", name: name, widget: string }
+
+  - name: signature
+    label: "✨ Alpha Gold (Signature Treatment)"
+    files:
+      - file: _data/signature.json
+        label: "เนื้อหา Alpha Gold"
+        name: signature_content
+        fields:
+          - { label: "ป้ายเล็กบน (Eyebrow)", name: eyebrow, widget: string, default: "Signature Treatment" }
+          - { label: "ชื่อทรีตเมนต์ บรรทัด 1", name: title_line1, widget: string, default: "Alpha" }
+          - { label: "ชื่อทรีตเมนต์ บรรทัด 2 (italic ทอง)", name: title_line2, widget: string, default: "Gold" }
+          - { label: "คำอธิบาย", name: lead, widget: text }
+          - label: "Facts (Duration / Downtime / Result / Best for)"
+            name: facts
+            widget: list
+            summary: "{{fields.k}}: {{fields.v}}"
+            fields:
+              - { label: "หัวข้อ (เช่น Duration)", name: k, widget: string }
+              - { label: "ค่า (เช่น 60-90 min)", name: v, widget: string }
+          - { label: "ปุ่ม CTA — ข้อความ", name: cta_text, widget: string, default: "Reserve via LINE" }
+          - { label: "ปุ่ม CTA — ลิงก์", name: cta_url, widget: string, default: "https://lin.ee/1i7Qgpv" }
+
   - name: reviews
     label: "⭐ รีวิวลูกค้า"
     files:
