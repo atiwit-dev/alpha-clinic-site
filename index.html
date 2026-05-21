@@ -165,6 +165,19 @@
       </div>
     </section>
 
+    <!-- Form modal (confirm + success + error) -->
+    <div class="modal" id="formModal" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal-panel modal-panel-form" role="document">
+        <button class="modal-close" data-close aria-label="ปิด">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+          </svg>
+        </button>
+        <div id="formModalContent"></div>
+      </div>
+    </div>
+
     <!-- Doctor detail modal (popup) -->
     <div class="modal" id="doctorModal" aria-hidden="true" role="dialog" aria-modal="true">
       <div class="modal-backdrop" data-close></div>
@@ -206,36 +219,20 @@
     </section>
 
     <section class="contact section" id="contact">
-      <div class="container two-col">
-        <div class="col">
+      <div class="container">
+        <header class="section-head contact-head">
           <p class="eyebrow">Visit Us</p>
           <h2>Begin your <em>consultation.</em></h2>
-          <p class="lead">
-            นัดหมายเข้าพบแพทย์เพื่อประเมินและออกแบบโปรแกรมเฉพาะของคุณ
-          </p>
-          <div class="contact-grid">
-            <div>
-              <p class="kv-k">Phone</p>
-              <p><a href="tel:+6621204012">(+66) 2-120-4012</a></p>
-              <p><a href="tel:+66631467168">(+66) 6-3146-7168</a></p>
-            </div>
-            <div>
-              <p class="kv-k">Email</p>
-              <p><a href="mailto:service@alphamedicalclinicthailand.com">service@alphamedicalclinicthailand.com</a></p>
-            </div>
-            <div>
-              <p class="kv-k">Hours</p>
-              <p>Wednesday – Monday<br/>10:00 – 19:00</p>
-              <p class="muted">ปิดทุกวันอังคาร</p>
-            </div>
-            <div>
-              <p class="kv-k">Address</p>
-              <p>2597, 2599 Lat Phrao 93,<br/>Wangthonglang, Bangkok 10310</p>
-            </div>
+          <p class="lead">นัดหมายเข้าพบแพทย์เพื่อประเมินและออกแบบโปรแกรมเฉพาะของคุณ — หรือทักทาย LINE เพื่อปรึกษาทันที</p>
+          <div class="contact-quick">
+            <a href="https://lin.ee/1i7Qgpv" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Chat on LINE</a>
+            <a href="tel:+6621204012" class="btn btn-outline">📞 (+66) 2-120-4012</a>
           </div>
-        </div>
-        <div class="col">
-          <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('.form-status').textContent='ขอบคุณค่ะ ทีมงานจะติดต่อกลับโดยเร็ว'; this.reset();">
+        </header>
+        <div class="contact-form-wrap">
+          <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact" />
+            <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
             <label>
               <span>Name</span>
               <input type="text" name="name" required />
@@ -243,6 +240,10 @@
             <label>
               <span>Phone</span>
               <input type="tel" name="phone" required />
+            </label>
+            <label>
+              <span>Email (optional)</span>
+              <input type="email" name="email" />
             </label>
             <label>
               <span>Treatment of interest</span>

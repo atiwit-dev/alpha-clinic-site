@@ -384,7 +384,10 @@ if (_modal) {
   });
 }
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeDoctorModal();
+  if (e.key === 'Escape') {
+    closeDoctorModal();
+    if (typeof closeFormModal === 'function') closeFormModal();
+  }
 });
 
 // About section
@@ -540,6 +543,166 @@ fetch('articles.json', { cache: 'no-cache' })
     });
   })
   .catch(err => console.warn('Failed to load articles.json:', err));
+
+/* ============================================================
+   Contact form — confirm popup → submit → success popup
+   ============================================================ */
+const _contactForm = document.getElementById('contactForm');
+const _formModal = document.getElementById('formModal');
+const _formModalContent = document.getElementById('formModalContent');
+
+function openFormModal(html) {
+  if (!_formModal || !_formModalContent) return;
+  _formModalContent.innerHTML = html;
+  _formModal.classList.add('is-open');
+  _formModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeFormModal() {
+  if (!_formModal) return;
+  _formModal.classList.remove('is-open');
+  _formModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+if (_formModal) {
+  _formModal.addEventListener('click', e => {
+    if (e.target.closest('[data-close]')) closeFormModal();
+  });
+}
+
+if (_contactForm) {
+  _contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Honeypot — silent fail for bots
+    const honeypot = _contactForm.querySelector('[name="bot-field"]');
+    if (honeypot && honeypot.value) return;
+
+    const formData = new FormData(_contactForm);
+    const data = {
+      name: (formData.get('name') || '').toString().trim(),
+      phone: (formData.get('phone') || '').toString().trim(),
+      email: (formData.get('email') || '').toString().trim(),
+      treatment: (formData.get('treatment') || '').toString().trim(),
+      message: (formData.get('message') || '').toString().trim()
+    };
+
+    showConfirmModal(data);
+  });
+}
+
+function showConfirmModal(data) {
+  const summaryRows = [
+    { k: 'ชื่อ', v: data.name },
+    { k: 'เบอร์โทร', v: data.phone },
+    { k: 'Email', v: data.email },
+    { k: 'สนใจ', v: data.treatment },
+    { k: 'ข้อความ', v: data.message }
+  ].filter(r => r.v);
+
+  const html = `
+    <div class="form-modal-icon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="13"/>
+        <circle cx="12" cy="16" r="0.5" fill="currentColor"/>
+      </svg>
+    </div>
+    <p class="modal-title-tag">ยืนยันการส่ง</p>
+    <h2 class="modal-title">ตรวจสอบข้อมูลอีกครั้ง</h2>
+    <p class="modal-subtitle">กรุณาตรวจสอบข้อมูลของคุณก่อนยืนยันส่ง</p>
+
+    <div class="form-summary">
+      ${summaryRows.map(r => `
+        <div class="form-summary-row">
+          <span class="k">${_esc(r.k)}</span>
+          <span class="v">${_esc(r.v).replace(/\n/g, '<br/>')}</span>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="form-modal-actions">
+      <button type="button" class="btn btn-outline" data-close>← แก้ไข</button>
+      <button type="button" class="btn btn-primary" id="confirmSendBtn">ยืนยัน ส่งข้อมูล</button>
+    </div>
+  `;
+  openFormModal(html);
+
+  const confirmBtn = document.getElementById('confirmSendBtn');
+  if (confirmBtn) confirmBtn.addEventListener('click', () => actuallySubmitContact(data));
+}
+
+async function actuallySubmitContact(data) {
+  const btn = document.getElementById('confirmSendBtn');
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'กำลังส่ง…';
+  }
+
+  try {
+    const params = new URLSearchParams();
+    params.append('form-name', 'contact');
+    Object.entries(data).forEach(([k, v]) => params.append(k, v));
+
+    const res = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString()
+    });
+
+    if (res.ok) {
+      showSuccessModal();
+      if (_contactForm) _contactForm.reset();
+    } else {
+      throw new Error('submit failed: ' + res.status);
+    }
+  } catch (err) {
+    console.error(err);
+    showErrorModal();
+  }
+}
+
+function showSuccessModal() {
+  const html = `
+    <div class="form-modal-icon success">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <p class="modal-title-tag">ส่งสำเร็จ</p>
+    <h2 class="modal-title">ขอบคุณค่ะ</h2>
+    <p class="modal-subtitle">ทีมงานได้รับข้อมูลของคุณแล้ว<br/>จะติดต่อกลับโดยเร็วที่สุด</p>
+    <p class="success-note">ปกติติดต่อกลับภายใน 24 ชั่วโมง · ต้องการคุยทันที? แชท LINE ได้เลย</p>
+
+    <div class="form-modal-actions">
+      <a href="https://lin.ee/1i7Qgpv" target="_blank" rel="noopener noreferrer" class="btn btn-primary">แชท LINE ทันที</a>
+      <button type="button" class="btn btn-outline" data-close>ปิด</button>
+    </div>
+  `;
+  openFormModal(html);
+}
+
+function showErrorModal() {
+  const html = `
+    <div class="form-modal-icon error">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="13"/>
+        <circle cx="12" cy="16" r="0.5" fill="currentColor"/>
+      </svg>
+    </div>
+    <p class="modal-title-tag" style="color:#c63a3a;">เกิดข้อผิดพลาด</p>
+    <h2 class="modal-title">ส่งไม่สำเร็จ</h2>
+    <p class="modal-subtitle">กรุณาลองอีกครั้ง<br/>หรือติดต่อทาง LINE</p>
+
+    <div class="form-modal-actions">
+      <a href="https://lin.ee/1i7Qgpv" target="_blank" rel="noopener noreferrer" class="btn btn-primary">แชท LINE</a>
+      <button type="button" class="btn btn-outline" data-close>ปิด</button>
+    </div>
+  `;
+  openFormModal(html);
+}
 
 /* Floating quick-contact buttons — fade in after scrolling past hero */
 const fab = document.getElementById('fab');
