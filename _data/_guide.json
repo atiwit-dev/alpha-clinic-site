@@ -1,0 +1,8 @@
+{
+  "hero_slides_size": "2560×1440px (16:9) · ขั้นต่ำ 1920×1080 · .webp/.jpg · <800KB",
+  "article_thumb_size": "1600×900px (16:9) · .webp/.jpg · <500KB",
+  "doctor_photo_size": "1200×1500px (4:5 แนวตั้ง) · พื้นหลังขาว/โปร่งใส (PNG) · <1MB",
+  "article_inline_size": "1600×900px หรือ 1200×1600 (สำหรับแนวตั้ง) · .webp/.jpg · <500KB",
+  "misc_size": "Logo: .svg / PNG 400×200px · Icon: .svg / PNG 200×200px",
+  "tips": "1. แปลงเป็น .webp ก่อนอัพโหลด (ลดขนาด 30-50%) — ใช้ https://squoosh.app\n2. ความกว้างไม่เกิน 2560px (ไม่ต้องเกินขนาดจอ Retina)\n3. ขนาดไฟล์รวมเว็บไม่ควรเกิน 5MB ต่อหน้า\n4. ใช้ภาพถ่ายมืออาชีพ — ไฟล์เริ่มต้นมักใหญ่ ต้อง compress"
+}

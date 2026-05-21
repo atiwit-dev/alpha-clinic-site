@@ -13,6 +13,44 @@ publish_mode: simple
 locale: en
 
 collections:
+  - name: guide
+    label: "📖 คู่มือขนาดรูป (อ่านก่อนอัพโหลด)"
+    files:
+      - file: _data/_guide.json
+        label: "ขนาดรูปแนะนำ"
+        name: image_guide
+        fields:
+          - label: "📐 รูปสไลด์โชว์ Hero"
+            name: hero_slides_size
+            widget: string
+            default: "2560×1440px (16:9) · ขั้นต่ำ 1920×1080 · .webp/.jpg · <800KB"
+            hint: "🎯 รูปกว้างมาก คุณภาพสูง — ใช้รูปคลินิก ทรีตเมนต์ หรือบรรยากาศ"
+          - label: "📐 รูปบทความ (thumbnail บนการ์ด)"
+            name: article_thumb_size
+            widget: string
+            default: "1600×900px (16:9) · .webp/.jpg · <500KB"
+            hint: "🎯 จะถูกครอปกึ่งกลาง — ใส่จุดสำคัญตรงกลาง"
+          - label: "📐 รูปคุณหมอ"
+            name: doctor_photo_size
+            widget: string
+            default: "1200×1500px (4:5 แนวตั้ง) · พื้นหลังขาว/โปร่งใส (PNG) · <1MB"
+            hint: "🎯 ใบหน้าอยู่ด้านบน 60% ของรูป — ช่วงไหล่ขึ้นไปจะโชว์เด่น"
+          - label: "📐 รูปในเนื้อหาบทความ"
+            name: article_inline_size
+            widget: string
+            default: "1600×900px หรือ 1200×1600 (สำหรับแนวตั้ง) · .webp/.jpg · <500KB"
+            hint: "🎯 ใส่ระหว่างเนื้อหาเป็นภาพประกอบ"
+          - label: "📐 รูปทั่วไป (logo, icon)"
+            name: misc_size
+            widget: string
+            default: "Logo: .svg / PNG 400×200px · Icon: .svg / PNG 200×200px"
+            hint: "🎯 ฟอร์แมต SVG จะคมที่สุดทุกขนาด"
+          - label: "💡 เคล็ดลับลดขนาดไฟล์"
+            name: tips
+            widget: text
+            default: "1. แปลงเป็น .webp ก่อนอัพโหลด (ลดขนาด 30-50%) — ใช้ https://squoosh.app\n2. ความกว้างไม่เกิน 2560px (ไม่ต้องเกินขนาดจอ Retina)\n3. ขนาดไฟล์รวมเว็บไม่ควรเกิน 5MB ต่อหน้า\n4. ใช้ภาพถ่ายมืออาชีพ — ไฟล์เริ่มต้นมักใหญ่ ต้อง compress"
+            hint: "📝 อ่านครั้งเดียว แล้วทำตามทุกครั้งที่อัพโหลด"
+
   - name: articles
     label: "📝 บทความ Journal"
     label_singular: "บทความ"
@@ -43,10 +81,10 @@ collections:
                 default: "Treatment"
               - { label: "เวลาอ่าน", name: read_time, widget: string, default: "5 min read" }
               - { label: "วันที่เผยแพร่", name: date, widget: datetime, required: false }
-              - { label: "รูปภาพประกอบ", name: image, widget: image, required: false, hint: "ถ้าไม่ใส่ จะใช้ตัวอักษรเป็น placeholder" }
+              - { label: "รูปภาพประกอบ", name: image, widget: image, required: false, hint: "📐 แนะนำ 1600×900px (อัตราส่วน 16:9) · ฟอร์แมต .webp หรือ .jpg · ขนาดไฟล์ <500KB · จะถูกครอปให้เต็มกรอบบนการ์ด" }
               - { label: "ตัวอักษร placeholder", name: letter, widget: string, default: "A", required: false, hint: "ใช้เมื่อไม่มีรูปภาพ — ตัวอักษรเดียว เช่น A / B / G" }
-              - { label: "ข้อความย่อ (แสดงบนการ์ด)", name: excerpt, widget: text }
-              - { label: "เนื้อหาเต็ม (สำหรับอนาคต)", name: body, widget: markdown, required: false }
+              - { label: "ข้อความย่อ (แสดงบนการ์ด)", name: excerpt, widget: text, hint: "💬 ความยาวเหมาะสม 100-160 ตัวอักษร · เป็นข้อความ teaser ของบทความ · จะแสดงใต้หัวข้อบนการ์ด" }
+              - { label: "เนื้อหาเต็ม (Markdown)", name: body, widget: markdown, required: false, hint: "📝 เขียนเป็น Markdown — ใช้ปุ่ม toolbar (Bold, Italic, List, Image, Link) ใส่รูปได้ในเนื้อหา (รูปในบทความ แนะนำ 1600×900px) · จะแสดงที่ /article.html?slug=..." }
 
   - name: hero_slides
     label: "🖼️ รูปสไลด์โชว์ Hero"
@@ -62,7 +100,7 @@ collections:
             collapsed: true
             min: 1
             fields:
-              - { label: "รูป", name: image, widget: image, hint: "อัพโหลดรูป (แนะนำขนาด >1600px กว้าง) หรือเลือกจาก library" }
+              - { label: "รูป", name: image, widget: image, hint: "📐 แนะนำ 2560×1440px ขั้นต่ำ 1920×1080px (16:9) · .webp หรือ .jpg · ขนาดไฟล์ <800KB · รูปแนวนอน ครอปไปทางขวาของรูปจะโชว์เด่นบนเดสก์ทอป" }
               - { label: "คำอธิบายรูป (alt text)", name: alt, widget: string, required: false, default: "" }
 
   - name: hero
@@ -73,9 +111,9 @@ collections:
         name: hero_content
         fields:
           - { label: "ป้ายเล็กบน (Eyebrow)", name: eyebrow, widget: string, default: "Bangkok · Est. Premium Aesthetic Care" }
-          - { label: "หัวข้อใหญ่ บรรทัด 1", name: headline_line1, widget: string, default: "Inspiring" }
-          - { label: "หัวข้อใหญ่ บรรทัด 2 (italic ทอง)", name: headline_line2, widget: string, default: "Confidence" }
-          - { label: "ข้อความใต้หัวข้อ", name: lead, widget: text, default: "สร้างความงามอย่างสมดุลจากภายในสู่ภายนอก\nด้วยนวัตกรรมการรักษาทันสมัย มาตรฐานสากล และความใส่ใจระดับพรีเมียม" }
+          - { label: "หัวข้อใหญ่ บรรทัด 1", name: headline_line1, widget: string, default: "Inspiring", hint: "✍️ คำสั้นๆ สวยๆ 1-2 คำ · จะแสดงตัวอักษรใหญ่มาก" }
+          - { label: "หัวข้อใหญ่ บรรทัด 2 (italic ทอง)", name: headline_line2, widget: string, default: "Confidence", hint: "✍️ คำสั้นๆ 1-2 คำ ที่จะถูกเน้น italic สีทอง" }
+          - { label: "ข้อความใต้หัวข้อ", name: lead, widget: text, default: "สร้างความงามอย่างสมดุลจากภายในสู่ภายนอก\nด้วยนวัตกรรมการรักษาทันสมัย มาตรฐานสากล และความใส่ใจระดับพรีเมียม", hint: "💬 1-2 บรรทัด ขนาด 100-180 ตัวอักษร · กด Enter เพื่อขึ้นบรรทัดใหม่" }
           - { label: "ปุ่มหลัก — ข้อความ", name: cta_primary_text, widget: string, default: "Book via LINE" }
           - { label: "ปุ่มหลัก — ลิงก์", name: cta_primary_url, widget: string, default: "https://lin.ee/1i7Qgpv" }
           - { label: "ปุ่มรอง — ข้อความ", name: cta_secondary_text, widget: string, default: "Explore Treatments →" }
@@ -87,11 +125,11 @@ collections:
         label: "เนื้อหา About section"
         name: about_content
         fields:
-          - { label: "ป้ายเล็กบน (Eyebrow)", name: eyebrow, widget: string, default: "About Alpha" }
+          - { label: "ป้ายเล็กบน (Eyebrow)", name: eyebrow, widget: string, default: "About Alpha", hint: "✍️ 1-3 คำ ตัวพิมพ์เล็ก · จะแสดง ABOUT ALPHA พร้อม dash ทอง" }
           - { label: "หัวข้อใหญ่ บรรทัด 1", name: title_line1, widget: string, default: "Premium care, designed around" }
-          - { label: "หัวข้อใหญ่ บรรทัด 2 (italic ทอง)", name: title_line2, widget: string, default: "you" }
-          - { label: "ข้อความแนะนำ (Lead)", name: lead, widget: text }
-          - { label: "ข้อความเสริม (Body)", name: body, widget: text }
+          - { label: "หัวข้อใหญ่ บรรทัด 2 (italic ทอง)", name: title_line2, widget: string, default: "you", hint: "✍️ คำที่จะเน้น italic สีทอง (1-3 คำ)" }
+          - { label: "ข้อความแนะนำ (Lead)", name: lead, widget: text, hint: "💬 ย่อหน้าแรก 1-3 บรรทัด เป็นข้อความใหญ่กว่าธรรมดา" }
+          - { label: "ข้อความเสริม (Body)", name: body, widget: text, hint: "💬 ย่อหน้ารองเสริมเนื้อหา" }
           - label: "Pills (จุดเด่น 3 อัน)"
             name: pills
             widget: list
@@ -106,9 +144,9 @@ collections:
         label: "การ์ดบริการ"
         name: services_content
         fields:
-          - { label: "ป้ายเล็กบน (Eyebrow)", name: eyebrow, widget: string, default: "Our Treatments" }
-          - { label: "หัวข้อ บรรทัด 1", name: title_line1, widget: string }
-          - { label: "หัวข้อ บรรทัด 2 (italic ทอง)", name: title_line2, widget: string }
+          - { label: "ป้ายเล็กบน (Eyebrow)", name: eyebrow, widget: string, default: "Our Treatments", hint: "✍️ จะมี dash ทองนำหน้า เช่น — OUR TREATMENTS" }
+          - { label: "หัวข้อ บรรทัด 1", name: title_line1, widget: string, hint: "✍️ คำสั้น 3-5 คำ" }
+          - { label: "หัวข้อ บรรทัด 2 (italic ทอง)", name: title_line2, widget: string, hint: "✍️ จะเน้น italic สีทอง" }
           - label: "การ์ดบริการ (3 อัน)"
             name: items
             widget: list
@@ -159,9 +197,9 @@ collections:
             collapsed: true
             min: 1
             fields:
-              - { label: "ข้อความรีวิว", name: quote, widget: text, hint: "ไม่ต้องใส่เครื่องหมาย “ ” — ระบบใส่ให้อัตโนมัติ" }
-              - { label: "ชื่อผู้รีวิว", name: author, widget: string, hint: "เช่น K. Nattha หรือ J. Lee" }
-              - { label: "ที่อยู่/หมายเหตุ", name: location, widget: string, default: "Bangkok", required: false }
+              - { label: "ข้อความรีวิว", name: quote, widget: text, hint: "💬 ความยาวเหมาะสม 80-220 ตัวอักษร · ระบบใส่เครื่องหมายคำพูดอัตโนมัติ · ภาษาไทยหรืออังกฤษได้" }
+              - { label: "ชื่อผู้รีวิว", name: author, widget: string, hint: "✍️ ใช้ชื่อย่อหรือ initial เพื่อความเป็นส่วนตัว เช่น K. Nattha, J. Lee, คุณ ก.ก." }
+              - { label: "ที่อยู่/หมายเหตุ", name: location, widget: string, default: "Bangkok", required: false, hint: "✍️ เช่น Bangkok, Returning Client, หรือเว้นว่างได้" }
 
   - name: doctor
     label: "👨‍⚕️ ประวัติคุณหมอ"
@@ -172,8 +210,8 @@ collections:
         fields:
           - { label: "ชื่อ-นามสกุล (ไทย)", name: name_th, widget: string, default: "นพ. ณัฐภัทร มีนชัยนันท์" }
           - { label: "ชื่อภาษาอังกฤษ + ตำแหน่ง", name: name_en, widget: string, default: "Dr. Bentz · Medical Director" }
-          - { label: "ประวัติย่อ (Bio)", name: bio, widget: text, default: "แพทย์ผู้เชี่ยวชาญด้านความงามและศัลยกรรมตกแต่ง มุ่งเน้นการประเมินเฉพาะบุคคลและการสื่อสารอย่างใกล้ชิดกับคนไข้ทุกท่าน เพื่อผลลัพธ์ที่สอดคล้องกับเอกลักษณ์ของแต่ละบุคคล" }
-          - { label: "รูปคุณหมอ", name: photo, widget: image, required: false, hint: "ไม่ใส่ก็ได้ ระบบใช้รูปเดิม" }
+          - { label: "ประวัติย่อ (Bio)", name: bio, widget: text, default: "แพทย์ผู้เชี่ยวชาญด้านความงามและศัลยกรรมตกแต่ง มุ่งเน้นการประเมินเฉพาะบุคคลและการสื่อสารอย่างใกล้ชิดกับคนไข้ทุกท่าน เพื่อผลลัพธ์ที่สอดคล้องกับเอกลักษณ์ของแต่ละบุคคล", hint: "💬 2-4 บรรทัด · เน้นความเชี่ยวชาญและจุดเด่น" }
+          - { label: "รูปคุณหมอ", name: photo, widget: image, required: false, hint: "📐 แนะนำ 1200×1500px (อัตราส่วน 4:5 แนวตั้ง) · พื้นหลังขาว/ครีม/โปร่งใส (PNG) · ขนาดไฟล์ <1MB · ใบหน้าอยู่บริเวณด้านบน 60% ของรูป" }
           - label: "ใบรับรอง/ความเชี่ยวชาญ"
             name: credentials
             widget: list
