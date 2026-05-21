@@ -24,6 +24,8 @@ window.addEventListener('DOMContentLoaded', async () => {
           .map(it => (it && it.image) ? String(it.image).replace(/^\//, '') : null)
           .filter(Boolean);
         if (fromJson.length) heroSlides = fromJson;
+        // Store labels for accessibility / debugging
+        window._heroLabels = data.items.map(it => (it && (it.label || it.alt)) || '');
       }
     }
   } catch (e) { /* fallback already set */ }

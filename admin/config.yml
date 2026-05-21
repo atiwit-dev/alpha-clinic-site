@@ -96,12 +96,12 @@ collections:
           - label: "รูปสไลด์"
             name: items
             widget: list
-            summary: "{{fields.image}}"
+            summary: "🖼️  {{fields.label}}"
             collapsed: true
             min: 1
             fields:
+              - { label: "ชื่อ/คำอธิบายรูป", name: label, widget: string, hint: "✍️ ตั้งชื่อรูปเพื่อให้ดูง่ายในรายการ เช่น 'หน้าคลินิก', 'ห้องตรวจ 1', 'โซฟารับรอง' · ใช้เป็น alt text ในเว็บด้วย" }
               - { label: "รูป", name: image, widget: image, hint: "📐 แนะนำ 2560×1440px ขั้นต่ำ 1920×1080px (16:9) · .webp หรือ .jpg · ขนาดไฟล์ <800KB · รูปแนวนอน ครอปไปทางขวาของรูปจะโชว์เด่นบนเดสก์ทอป" }
-              - { label: "คำอธิบายรูป (alt text)", name: alt, widget: string, required: false, default: "" }
 
   - name: hero
     label: "🏠 หน้าแรก (Hero)"
