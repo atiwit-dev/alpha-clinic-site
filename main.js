@@ -270,7 +270,7 @@ fetch('_data/doctors.json', { cache: 'no-cache' })
     const grid = document.getElementById('doctorGrid');
     if (!grid || !Array.isArray(d.items)) return;
 
-    grid.innerHTML = d.items.map((doc, i) => `
+    const cardHtml = d.items.map((doc, i) => `
       <article class="doctor-card" data-doc-index="${i}" role="button" tabindex="0" aria-label="ดูรายละเอียด ${_esc(doc.name_th || doc.name_en || '')}">
         <div class="doctor-card-photo">
           ${doc.photo ? `<img src="${_esc(doc.photo)}" alt="${_esc(doc.name_th || doc.name_en || '')}" loading="lazy" />` : ''}
@@ -285,11 +285,22 @@ fetch('_data/doctors.json', { cache: 'no-cache' })
       </article>
     `).join('');
 
-    // Card click → open modal
+    if (d.items.length >= 3) {
+      // 3+ doctors — enable infinite marquee carousel
+      grid.classList.add('is-carousel');
+      // Duplicate cards twice for seamless loop (data-doc-index stays unique via modulo on click)
+      grid.innerHTML = `<div class="doctor-track">${cardHtml}${cardHtml}</div>`;
+    } else {
+      // 1-2 doctors — centered grid (no scroll)
+      grid.innerHTML = cardHtml;
+    }
+
+    // Card click → open modal (works for cloned cards too via modulo)
+    const itemsCount = d.items.length;
     grid.addEventListener('click', e => {
       const card = e.target.closest('.doctor-card');
       if (!card) return;
-      const idx = parseInt(card.dataset.docIndex, 10);
+      const idx = parseInt(card.dataset.docIndex, 10) % itemsCount;
       if (!isNaN(idx)) openDoctorModal(_doctorsData.items[idx]);
     });
     grid.addEventListener('keydown', e => {
@@ -297,18 +308,62 @@ fetch('_data/doctors.json', { cache: 'no-cache' })
       const card = e.target.closest('.doctor-card');
       if (!card) return;
       e.preventDefault();
-      const idx = parseInt(card.dataset.docIndex, 10);
+      const idx = parseInt(card.dataset.docIndex, 10) % itemsCount;
       if (!isNaN(idx)) openDoctorModal(_doctorsData.items[idx]);
     });
 
-    // Stagger reveal on cards
-    grid.querySelectorAll('.doctor-card').forEach((el, i) => {
-      el.classList.add('reveal');
-      el.style.setProperty('--reveal-delay', (i * 0.08) + 's');
-      try { reveal.observe(el); } catch (e) {}
-    });
+    // Stagger reveal — only for non-carousel mode (carousel is always visible)
+    if (!grid.classList.contains('is-carousel')) {
+      grid.querySelectorAll('.doctor-card').forEach((el, i) => {
+        el.classList.add('reveal');
+        el.style.setProperty('--reveal-delay', (i * 0.08) + 's');
+        try { reveal.observe(el); } catch (e) {}
+      });
+    }
+
+    // ✨ 3D Tilt + Spotlight effect (luxe interactive)
+    setupDoctorCardEffects(grid);
   })
   .catch(() => { /* ignore */ });
+
+/* 3D tilt + spotlight on doctor cards — mouse follows cursor */
+function setupDoctorCardEffects(container) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(pointer: coarse)').matches) return; // skip on touch
+
+  const cards = container.querySelectorAll('.doctor-card');
+  cards.forEach(card => {
+    let rafId = null;
+
+    const handleMove = (e) => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const rotateX = ((y - cy) / cy) * -5;  // max ±5deg
+        const rotateY = ((x - cx) / cx) * 5;
+
+        card.style.transform =
+          `perspective(1000px) translateY(-6px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale(1.02)`;
+        card.style.setProperty('--mx', `${((x / rect.width) * 100).toFixed(1)}%`);
+        card.style.setProperty('--my', `${((y / rect.height) * 100).toFixed(1)}%`);
+      });
+    };
+
+    const handleLeave = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      card.style.transform = '';
+      card.style.setProperty('--mx', '50%');
+      card.style.setProperty('--my', '50%');
+    };
+
+    card.addEventListener('mousemove', handleMove);
+    card.addEventListener('mouseleave', handleLeave);
+  });
+}
 
 // Doctor modal — open/close
 function openDoctorModal(doc) {

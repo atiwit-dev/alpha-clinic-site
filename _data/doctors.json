@@ -6,24 +6,53 @@
   "items": [
     {
       "name_th": "นพ. ณัฐภัทร มีนชัยนันท์",
-      "name_en": "Dr. Bentz",
+      "name_en": "Dr. Natthapat \"Benz\"",
       "title": "Medical Director",
       "photo": "/images/dr-benz.png",
-      "bio_short": "Aesthetic Medicine Specialist",
-      "bio_full": "## ประวัติ\n\nแพทย์ผู้เชี่ยวชาญด้านความงามและศัลยกรรมตกแต่ง มุ่งเน้นการประเมินเฉพาะบุคคลและการสื่อสารอย่างใกล้ชิดกับคนไข้ทุกท่าน เพื่อผลลัพธ์ที่สอดคล้องกับเอกลักษณ์ของแต่ละบุคคล\n\n## แนวทางการทำงาน\n\n- ประเมินสภาพผิวและโครงสร้างใบหน้าเฉพาะบุคคล\n- ออกแบบโปรแกรมเฉพาะ ไม่ใช้แพ็คเกจสำเร็จรูป\n- ติดตามผลและปรับแผนตามการตอบสนอง\n\n## ปรัชญา\n\n> \"ความงามที่แท้จริงคือความสมดุล — การเสริมให้คุณเป็นตัวคุณในเวอร์ชั่นที่ดีที่สุด ไม่ใช่เปลี่ยนเป็นคนอื่น\"",
+      "bio_short": "4 American Boards · Queen Mary M.Sc.",
+      "bio_full": "## ตำแหน่งปัจจุบัน\n\n- **Medical Director** — Alpha Medical Clinic\n- **กรรมการบริษัท** — แอลฟา คลีนิกเวชกรรม จำกัด\n\n## ความเชี่ยวชาญ\n\nแพทย์ผู้ชำนาญการด้าน**เวชศาสตร์ความงาม** การใช้**เลเซอร์ทุกประเภท** รวมถึงวิธีการใช้และเทคนิคที่หลากหลาย การ**ปรับรูปหน้า** และ**การรักษาฝ้า**อย่างถูกต้องมุ่งเน้นให้หายขาด\n\nรวมไปถึงการใช้**เวชศาสตร์ชะลอวัยและเวชศาสตร์ฟื้นฟู** ตามแบบฉบับการรักษาของประเทศสหรัฐอเมริกา ในการดูแลสุขภาพทั้งภายนอกและภายใน\n\n## การฝึกอบรมพิเศษ (Masterclass)\n\nสั่งสมประสบการณ์การเทรนนิ่ง**ระดับจับมือสอนตัวต่อตัว** โดยตรงจากแพทย์ที่มีชื่อเสียงระดับโลก:\n\n- **Dr. Maria Angelo Khattar**\n- **Prof. Mucio Porto**\n- **Prof. Rox Anderson**\n- และผู้เชี่ยวชาญระดับโลกอีกหลายท่าน\n\nครอบคลุมการฉีด **Botox, Filler** ทุกประเภทอย่างชำนาญ ผ่านการทดสอบองค์ความรู้ภาควิชาการ การปฏิบัติ การสัมภาษณ์ การรักษา และส่งงานวิจัย ตามแบบแผนของสมาคมและเหล่า Professor ระดับโลก (ส่วนใหญ่คือผู้วิจัย คิดค้น และผลิตเครื่องมือ/ผลิตภัณฑ์ความงามที่ได้รับการยอมรับในตลาดปัจจุบัน)\n\n## ปรัชญา\n\n> \"ความงามที่แท้จริงคือความสมดุล — การเสริมให้คุณเป็นตัวคุณในเวอร์ชั่นที่ดีที่สุด ไม่ใช่เปลี่ยนเป็นคนอื่น\"",
       "specialties": [
-        { "text": "Anti-Aging" },
-        { "text": "Thread Lift" },
-        { "text": "Filler & Botox" },
-        { "text": "Energy-Based Devices" }
+        { "text": "Aesthetic Medicine" },
+        { "text": "Laser Surgery" },
+        { "text": "Face Contouring" },
+        { "text": "Melasma Treatment" },
+        { "text": "Anti-Aging & Regenerative" }
       ],
       "credentials": [
-        { "text": "Aesthetic Medicine Specialist" },
-        { "text": "Certified Injector — Allergan, Galderma" },
-        { "text": "Energy-Based Device Specialist (Thermage, Ulthera)" }
+        { "text": "Fellow Aesthetic Medicine (FAM) — A4M, Chicago, Illinois, USA" },
+        { "text": "American Board in Aesthetic Medicine (AAAM) — Las Vegas, Nevada, USA" },
+        { "text": "American Board in Anti-Aging & Regenerative Medicine (ABAARM) — Chicago, Illinois, USA" },
+        { "text": "American Board in Laser Surgery (ABLS) — Trumbull, Connecticut, USA" }
       ],
       "education": [
-        { "text": "M.D. — มหาวิทยาลัยชั้นนำของไทย" }
+        { "text": "Master of Science in Aesthetics Medicine — Queen Mary University, London, UK (2024)" },
+        { "text": "Doctor of Medicine (M.D.)" }
+      ],
+      "languages": [
+        { "text": "ไทย" },
+        { "text": "English" }
+      ]
+    },
+    {
+      "name_th": "พญ. ศศิผกา สินธุเสน",
+      "name_en": "Dr. Sasipaka",
+      "title": "Board-Certified Dermatologist",
+      "photo": "/images/dr-sasipaka.png",
+      "bio_short": "แพทย์เฉพาะทางผิวหนัง · Ramathibodi",
+      "bio_full": "## ประวัติ\n\nแพทย์เฉพาะทางผิวหนัง ประจำ **Alpha Medical Clinic** — ผู้เชี่ยวชาญด้านการดูแลผิวพรรณ ฟื้นฟูปัญหาผิว และเสริมความงามแบบเป็นธรรมชาติ ด้วยความใส่ใจในรายละเอียดเฉพาะของแต่ละบุคคล\n\n## การฝึกอบรมเฉพาะทาง (Training)\n\n- **Chulalongkorn Annual Surgery & Aesthetic 2016**\n  Tips and Tricks in Aesthetic Dermatology\n- **Ramathibodi Training Course in Cosmetic Dermatology**\n  ปี 2016, 2018, 2019\n- **Cadaveric Workshop, Ramathibodi Hospital**\n  ปี 2018, 2019, 2021\n\n## ปรัชญา\n\n> \"การดูแลผิวที่ดี ต้องเข้าใจปัญหาเฉพาะของแต่ละคน — แล้วเลือกวิธีรักษาที่เหมาะสมที่สุด ไม่มีสูตรสำเร็จที่ใช้ได้กับทุกคน\"",
+      "specialties": [
+        { "text": "Cosmetic Dermatology" },
+        { "text": "Skin Rejuvenation" },
+        { "text": "Pigmentation Care" },
+        { "text": "Aesthetic Dermatology" }
+      ],
+      "credentials": [
+        { "text": "Diplomate Thai Board of Dermatology — Ramathibodi Hospital" },
+        { "text": "Ramathibodi Cosmetic Dermatology Training (2016, 2018, 2019)" },
+        { "text": "Cadaveric Workshop — Ramathibodi (2018, 2019, 2021)" }
+      ],
+      "education": [
+        { "text": "Doctor of Medicine (M.D.) — Chulalongkorn University" }
       ],
       "languages": [
         { "text": "ไทย" },

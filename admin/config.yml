@@ -258,6 +258,30 @@ collections:
                 fields:
                   - { label: "ภาษา", name: text, widget: string }
 
+  - name: seo
+    label: "🔍 SEO & Meta tags"
+    files:
+      - file: _data/seo.json
+        label: "SEO & Meta"
+        name: seo_settings
+        fields:
+          - { label: "Meta Title (แสดงในแท็บเบราว์เซอร์ + Google)", name: meta_title, widget: string, hint: "📐 50-60 ตัวอักษร · เช่น 'Alpha Medical Clinic — Inspiring Confidence'" }
+          - { label: "Meta Description (คำอธิบายใน Google search)", name: meta_description, widget: text, hint: "📐 130-160 ตัวอักษร · เขียนให้คนคลิก" }
+          - { label: "รูป OG (แชร์ใน Social Media)", name: og_image, widget: image, hint: "📐 1200×630px (1.91:1) · .jpg/.png · <1MB · จะแสดงตอนแชร์ Facebook/LINE/Twitter" }
+          - { label: "Keywords (คั่นด้วย comma)", name: keywords, widget: text, required: false, hint: "✍️ เช่น 'คลินิกความงาม, Botox, Filler, Bangkok'" }
+          - { label: "Favicon (รูปไอคอนแท็บ)", name: favicon, widget: image, required: false, hint: "📐 32×32 หรือ 64×64 · PNG/ICO" }
+
+  - name: footer
+    label: "🦶 Footer (ส่วนล่างเว็บ)"
+    files:
+      - file: _data/footer.json
+        label: "เนื้อหา Footer"
+        name: footer_content
+        fields:
+          - { label: "Tagline ใต้โลโก้", name: tagline, widget: text, default: "Inspiring Confidence — สร้างความงามอย่างสมดุล จากภายในสู่ภายนอก" }
+          - { label: "ข้อความ Copyright", name: copyright, widget: string, default: "© 2026 Alpha Medical Clinic. All rights reserved." }
+          - { label: "ข้อความปุ่ม Back to top", name: back_to_top_text, widget: string, default: "Back to top ↑" }
+
   - name: info
     label: "📍 ข้อมูลคลินิก"
     label_singular: "ข้อมูล"
