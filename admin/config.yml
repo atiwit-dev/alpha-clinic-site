@@ -162,26 +162,27 @@ collections:
                 fields:
                   - { label: "ชื่อบริการ", name: name, widget: string }
 
-  - name: signature
-    label: "✨ Alpha Gold (Signature Treatment)"
+  - name: programs
+    label: "✨ Programs (โลโก้แบรนด์/ทรีตเมนต์)"
     files:
-      - file: _data/signature.json
-        label: "เนื้อหา Alpha Gold"
-        name: signature_content
+      - file: _data/programs.json
+        label: "รายการ Programs"
+        name: programs_content
         fields:
-          - { label: "ป้ายเล็กบน (Eyebrow)", name: eyebrow, widget: string, default: "Signature Treatment" }
-          - { label: "ชื่อทรีตเมนต์ บรรทัด 1", name: title_line1, widget: string, default: "Alpha" }
-          - { label: "ชื่อทรีตเมนต์ บรรทัด 2 (italic ทอง)", name: title_line2, widget: string, default: "Gold" }
-          - { label: "คำอธิบาย", name: lead, widget: text }
-          - label: "Facts (Duration / Downtime / Result / Best for)"
-            name: facts
+          - { label: "ป้ายเล็กบน (Eyebrow)", name: section_eyebrow, widget: string, default: "Our Programs" }
+          - { label: "หัวข้อ บรรทัด 1", name: section_title_line1, widget: string, default: "ทรีตเมนต์และเทคโนโลยี" }
+          - { label: "หัวข้อ บรรทัด 2 (italic ทอง)", name: section_title_line2, widget: string, default: "ที่เราให้บริการ" }
+          - { label: "ข้อความใต้หัวข้อ", name: section_lead, widget: text, required: false }
+          - label: "รายการ Programs (กด \"+\" เพื่อเพิ่ม)"
+            name: items
             widget: list
-            summary: "{{fields.k}}: {{fields.v}}"
+            summary: "{{fields.name}} — {{fields.category}}"
+            collapsed: true
+            min: 1
             fields:
-              - { label: "หัวข้อ (เช่น Duration)", name: k, widget: string }
-              - { label: "ค่า (เช่น 60-90 min)", name: v, widget: string }
-          - { label: "ปุ่ม CTA — ข้อความ", name: cta_text, widget: string, default: "Reserve via LINE" }
-          - { label: "ปุ่ม CTA — ลิงก์", name: cta_url, widget: string, default: "https://lin.ee/1i7Qgpv" }
+              - { label: "โลโก้แบรนด์ / ทรีตเมนต์", name: image, widget: image, hint: "📐 โลโก้แบบสี่เหลี่ยม/แนวนอน · PNG พื้นโปร่ง หรือ WebP · ขั้นต่ำ 400×200px · <100KB · ตัวอักษรในโลโก้จะถูกย่อให้พอดีในการ์ด" }
+              - { label: "ชื่อ", name: name, widget: string, hint: "✍️ เช่น 'Allergan', 'Thermage FLX', 'Discovery Pico'" }
+              - { label: "หมวดหมู่/คำอธิบายสั้น", name: category, widget: string, required: false, hint: "✍️ 1-3 คำ เช่น 'Filler & Botox', 'Skin Tightening', 'Picosecond Laser'" }
 
   - name: reviews
     label: "⭐ รีวิวลูกค้า"
@@ -201,23 +202,58 @@ collections:
               - { label: "ชื่อผู้รีวิว", name: author, widget: string, hint: "✍️ ใช้ชื่อย่อหรือ initial เพื่อความเป็นส่วนตัว เช่น K. Nattha, J. Lee, คุณ ก.ก." }
               - { label: "ที่อยู่/หมายเหตุ", name: location, widget: string, default: "Bangkok", required: false, hint: "✍️ เช่น Bangkok, Returning Client, หรือเว้นว่างได้" }
 
-  - name: doctor
-    label: "👨‍⚕️ ประวัติคุณหมอ"
+  - name: doctors
+    label: "👨‍⚕️ ทีมแพทย์ (Team)"
     files:
-      - file: _data/doctor.json
-        label: "ข้อมูลแพทย์"
-        name: doctor_info
+      - file: _data/doctors.json
+        label: "รายชื่อแพทย์ทั้งหมด"
+        name: doctors_list
         fields:
-          - { label: "ชื่อ-นามสกุล (ไทย)", name: name_th, widget: string, default: "นพ. ณัฐภัทร มีนชัยนันท์" }
-          - { label: "ชื่อภาษาอังกฤษ + ตำแหน่ง", name: name_en, widget: string, default: "Dr. Bentz · Medical Director" }
-          - { label: "ประวัติย่อ (Bio)", name: bio, widget: text, default: "แพทย์ผู้เชี่ยวชาญด้านความงามและศัลยกรรมตกแต่ง มุ่งเน้นการประเมินเฉพาะบุคคลและการสื่อสารอย่างใกล้ชิดกับคนไข้ทุกท่าน เพื่อผลลัพธ์ที่สอดคล้องกับเอกลักษณ์ของแต่ละบุคคล", hint: "💬 2-4 บรรทัด · เน้นความเชี่ยวชาญและจุดเด่น" }
-          - { label: "รูปคุณหมอ", name: photo, widget: image, required: false, hint: "📐 แนะนำ 1200×1500px (อัตราส่วน 4:5 แนวตั้ง) · พื้นหลังขาว/ครีม/โปร่งใส (PNG) · ขนาดไฟล์ <1MB · ใบหน้าอยู่บริเวณด้านบน 60% ของรูป" }
-          - label: "ใบรับรอง/ความเชี่ยวชาญ"
-            name: credentials
+          - { label: "ป้ายเล็กบน (Eyebrow)", name: section_eyebrow, widget: string, default: "Our Team" }
+          - { label: "หัวข้อ บรรทัด 1", name: section_title_line1, widget: string, default: "Specialists who care for" }
+          - { label: "หัวข้อ บรรทัด 2 (italic ทอง)", name: section_title_line2, widget: string, default: "your transformation." }
+          - { label: "ข้อความใต้หัวข้อ", name: section_lead, widget: text, required: false }
+          - label: "รายชื่อแพทย์ — กด \"+\" เพื่อเพิ่มแพทย์ใหม่"
+            name: items
             widget: list
-            summary: "{{fields.text}}"
+            summary: "{{fields.name_th}} — {{fields.title}}"
+            collapsed: true
+            min: 1
             fields:
-              - { label: "ข้อความ", name: text, widget: string }
+              - { label: "ชื่อภาษาไทย", name: name_th, widget: string, hint: "เช่น 'นพ. ณัฐภัทร มีนชัยนันท์'" }
+              - { label: "ชื่อภาษาอังกฤษ", name: name_en, widget: string, hint: "เช่น 'Dr. Bentz'" }
+              - { label: "ตำแหน่ง", name: title, widget: string, hint: "เช่น Medical Director, Aesthetic Doctor, Dermatologist" }
+              - { label: "รูปคุณหมอ", name: photo, widget: image, hint: "📐 1200×1500px (4:5 แนวตั้ง) · พื้นหลังขาว/โปร่งใส PNG · ใบหน้าอยู่ด้านบน 60% · ขนาดไฟล์ <1MB" }
+              - { label: "ประวัติย่อ (แสดงบนการ์ด)", name: bio_short, widget: string, hint: "✍️ 1 บรรทัด สั้นๆ เช่น 'Aesthetic Medicine Specialist'" }
+              - { label: "ประวัติเต็ม (แสดงใน popup)", name: bio_full, widget: markdown, required: false, hint: "📝 เขียน markdown — ใช้ ## สำหรับหัวข้อย่อย, **ตัวหนา**, รายการ, อ้างคำพูด > ... · จะแสดงเมื่อกดการ์ด" }
+              - label: "ความเชี่ยวชาญพิเศษ (Specialties)"
+                name: specialties
+                widget: list
+                summary: "{{fields.text}}"
+                required: false
+                fields:
+                  - { label: "หัวข้อความเชี่ยวชาญ", name: text, widget: string }
+              - label: "ใบรับรอง / Credentials"
+                name: credentials
+                widget: list
+                summary: "{{fields.text}}"
+                required: false
+                fields:
+                  - { label: "ข้อความ", name: text, widget: string }
+              - label: "การศึกษา (Education)"
+                name: education
+                widget: list
+                summary: "{{fields.text}}"
+                required: false
+                fields:
+                  - { label: "ข้อความ", name: text, widget: string }
+              - label: "ภาษาที่ใช้สื่อสาร"
+                name: languages
+                widget: list
+                summary: "{{fields.text}}"
+                required: false
+                fields:
+                  - { label: "ภาษา", name: text, widget: string }
 
   - name: info
     label: "📍 ข้อมูลคลินิก"

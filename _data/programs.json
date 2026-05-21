@@ -1,0 +1,20 @@
+{
+  "section_eyebrow": "Our Programs",
+  "section_title_line1": "ทรีตเมนต์และเทคโนโลยี",
+  "section_title_line2": "ที่เราให้บริการ",
+  "section_lead": "นวัตกรรมระดับโลกที่ได้รับการรับรอง — คัดสรรเพื่อผลลัพธ์ที่เป็นธรรมชาติและปลอดภัย",
+  "items": [
+    { "image": "/images/programs/allergan.webp",      "name": "Allergan",       "category": "Filler & Botox" },
+    { "image": "/images/programs/juvederm.webp",      "name": "Juvederm",       "category": "Dermal Filler" },
+    { "image": "/images/programs/dysport.webp",       "name": "Dysport",        "category": "Botulinum Toxin" },
+    { "image": "/images/programs/xeomin.webp",        "name": "Xeomin",         "category": "Botulinum Toxin" },
+    { "image": "/images/programs/restylane.png",      "name": "Restylane",      "category": "Skinboosters & Filler" },
+    { "image": "/images/programs/radiesse.webp",      "name": "Radiesse",       "category": "Bio-Stimulator" },
+    { "image": "/images/programs/thermage-flx.webp",  "name": "Thermage FLX",   "category": "Skin Tightening (RF)" },
+    { "image": "/images/programs/discovery-pico.webp","name": "Discovery Pico", "category": "Picosecond Laser" },
+    { "image": "/images/programs/strawalker-pqx.webp","name": "StraWalker PQX", "category": "Laser System" },
+    { "image": "/images/programs/emface.webp",        "name": "EMFACE",         "category": "Facial Toning" },
+    { "image": "/images/programs/logo-2.webp",        "name": "Treatment",      "category": "Aesthetic Program" },
+    { "image": "/images/programs/logo-recovered.webp","name": "Treatment",      "category": "Aesthetic Program" }
+  ]
+}

@@ -251,28 +251,139 @@ fetch('_data/hero.json', { cache: 'no-cache' })
   })
   .catch(() => { /* ignore — fallback HTML remains */ });
 
-// Doctor
-fetch('_data/doctor.json', { cache: 'no-cache' })
+// Doctors — multi-card grid with popup modal
+let _doctorsData = null;
+fetch('_data/doctors.json', { cache: 'no-cache' })
   .then(r => r.ok ? r.json() : null)
   .then(d => {
     if (!d) return;
-    if (d.name_th) {
-      const parts = d.name_th.split(' ');
-      if (parts.length > 1) {
-        _setHtml('doctorNameTh', `${_esc(parts.slice(0, 2).join(' '))}<br/><em>${_esc(parts.slice(2).join(' '))}</em>`);
-      } else {
-        _setText('doctorNameTh', d.name_th);
-      }
+    _doctorsData = d;
+
+    _setText('doctorsEyebrow', d.section_eyebrow);
+    if (d.section_title_line1 || d.section_title_line2) {
+      _setHtml('doctorsTitle', `${_esc(d.section_title_line1 || '')}<br/><em>${_esc(d.section_title_line2 || '')}</em>`);
     }
-    _setText('doctorNameEn', d.name_en);
-    _setText('doctorBio', d.bio);
-    if (d.photo) _setAttr('doctorPhoto', 'src', d.photo);
-    if (Array.isArray(d.credentials) && d.credentials.length) {
-      const ul = document.getElementById('doctorCredentials');
-      if (ul) ul.innerHTML = d.credentials.map(c => `<li>${_esc(c.text || c)}</li>`).join('');
-    }
+    _setText('doctorsLead', d.section_lead);
+
+    const grid = document.getElementById('doctorGrid');
+    if (!grid || !Array.isArray(d.items)) return;
+
+    grid.innerHTML = d.items.map((doc, i) => `
+      <article class="doctor-card" data-doc-index="${i}" role="button" tabindex="0" aria-label="ดูรายละเอียด ${_esc(doc.name_th || doc.name_en || '')}">
+        <div class="doctor-card-photo">
+          ${doc.photo ? `<img src="${_esc(doc.photo)}" alt="${_esc(doc.name_th || doc.name_en || '')}" loading="lazy" />` : ''}
+        </div>
+        <div class="doctor-card-body">
+          <p class="doctor-card-title">${_esc(doc.title || '')}</p>
+          <h3 class="doctor-card-name">${_esc(doc.name_th || '')}</h3>
+          <p class="doctor-card-name-en">${_esc(doc.name_en || '')}</p>
+          ${doc.bio_short ? `<p class="doctor-card-bio">${_esc(doc.bio_short)}</p>` : ''}
+          <span class="link-arrow">View Profile →</span>
+        </div>
+      </article>
+    `).join('');
+
+    // Card click → open modal
+    grid.addEventListener('click', e => {
+      const card = e.target.closest('.doctor-card');
+      if (!card) return;
+      const idx = parseInt(card.dataset.docIndex, 10);
+      if (!isNaN(idx)) openDoctorModal(_doctorsData.items[idx]);
+    });
+    grid.addEventListener('keydown', e => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const card = e.target.closest('.doctor-card');
+      if (!card) return;
+      e.preventDefault();
+      const idx = parseInt(card.dataset.docIndex, 10);
+      if (!isNaN(idx)) openDoctorModal(_doctorsData.items[idx]);
+    });
+
+    // Stagger reveal on cards
+    grid.querySelectorAll('.doctor-card').forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.setProperty('--reveal-delay', (i * 0.08) + 's');
+      try { reveal.observe(el); } catch (e) {}
+    });
   })
   .catch(() => { /* ignore */ });
+
+// Doctor modal — open/close
+function openDoctorModal(doc) {
+  if (!doc) return;
+  const modal = document.getElementById('doctorModal');
+  const body = document.getElementById('modalBody');
+  if (!modal || !body) return;
+
+  const renderList = (arr, title) => {
+    if (!Array.isArray(arr) || !arr.length) return '';
+    return `
+      <div class="modal-list-block">
+        <p class="modal-list-title">${_esc(title)}</p>
+        <ul class="modal-list">
+          ${arr.map(x => `<li>${_esc(x.text || x)}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+  };
+
+  let bodyHtml = '';
+  try {
+    bodyHtml = window.marked ? window.marked.parse(doc.bio_full || '') : `<p>${_esc(doc.bio_full || '')}</p>`;
+  } catch (e) { bodyHtml = `<p>${_esc(doc.bio_full || '')}</p>`; }
+
+  body.innerHTML = `
+    <div class="modal-header">
+      <div class="modal-portrait">
+        ${doc.photo ? `<img src="${_esc(doc.photo)}" alt="${_esc(doc.name_th)}" />` : ''}
+      </div>
+      <div class="modal-headings">
+        <p class="modal-title-tag">${_esc(doc.title || '')}</p>
+        <h2 class="modal-title">${_esc(doc.name_th || '')}</h2>
+        <p class="modal-subtitle">${_esc(doc.name_en || '')}</p>
+        ${Array.isArray(doc.specialties) && doc.specialties.length
+          ? `<div class="modal-chips">${doc.specialties.map(s => `<span class="modal-chip">${_esc(s.text || s)}</span>`).join('')}</div>`
+          : ''}
+      </div>
+    </div>
+
+    <div class="modal-content">${bodyHtml}</div>
+
+    ${renderList(doc.credentials, 'Credentials')}
+    ${renderList(doc.education, 'Education')}
+    ${renderList(doc.languages, 'Languages')}
+
+    <div class="modal-footer">
+      <a href="https://lin.ee/1i7Qgpv" target="_blank" rel="noopener noreferrer" class="btn btn-primary">นัดหมายปรึกษาผ่าน LINE</a>
+    </div>
+  `;
+
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  // Focus close button for keyboard users
+  const closeBtn = modal.querySelector('.modal-close');
+  if (closeBtn) closeBtn.focus();
+}
+
+function closeDoctorModal() {
+  const modal = document.getElementById('doctorModal');
+  if (!modal) return;
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+// Modal close handlers (delegate)
+const _modal = document.getElementById('doctorModal');
+if (_modal) {
+  _modal.addEventListener('click', e => {
+    if (e.target.closest('[data-close]')) closeDoctorModal();
+  });
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeDoctorModal();
+});
 
 // About section
 fetch('_data/about.json', { cache: 'no-cache' })
@@ -320,24 +431,38 @@ fetch('_data/services.json', { cache: 'no-cache' })
   })
   .catch(() => { /* ignore */ });
 
-// Signature (Alpha Gold) section
-fetch('_data/signature.json', { cache: 'no-cache' })
+// Programs grid (brand/treatment logos)
+fetch('_data/programs.json', { cache: 'no-cache' })
   .then(r => r.ok ? r.json() : null)
   .then(d => {
     if (!d) return;
-    _setText('signatureEyebrow', d.eyebrow);
-    if (d.title_line1 || d.title_line2) {
-      _setHtml('signatureTitle', `${_esc(d.title_line1 || '')} <em>${_esc(d.title_line2 || '')}</em>`);
+    _setText('programsEyebrow', d.section_eyebrow);
+    if (d.section_title_line1 || d.section_title_line2) {
+      _setHtml('programsTitle', `${_esc(d.section_title_line1 || '')}<br/><em>${_esc(d.section_title_line2 || '')}</em>`);
     }
-    _setText('signatureLead', d.lead);
-    if (Array.isArray(d.facts) && d.facts.length) {
-      const grid = document.getElementById('signatureFacts');
-      if (grid) {
-        grid.innerHTML = d.facts.map(f => `<div><span class="kv-k">${_esc(f.k)}</span><span class="kv-v">${_esc(f.v)}</span></div>`).join('');
-      }
-    }
-    _setText('signatureCta', d.cta_text);
-    _setAttr('signatureCta', 'href', d.cta_url);
+    _setText('programsLead', d.section_lead);
+
+    const grid = document.getElementById('programsGrid');
+    if (!grid || !Array.isArray(d.items)) return;
+
+    grid.innerHTML = d.items.map((p, i) => `
+      <article class="program-tile" style="--i:${i}">
+        <div class="program-logo">
+          ${p.image ? `<img src="${_esc(p.image)}" alt="${_esc(p.name || '')}" loading="lazy" />` : ''}
+        </div>
+        <div class="program-info">
+          <p class="program-name">${_esc(p.name || '')}</p>
+          ${p.category ? `<p class="program-category">${_esc(p.category)}</p>` : ''}
+        </div>
+      </article>
+    `).join('');
+
+    // Staggered reveal
+    grid.querySelectorAll('.program-tile').forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.setProperty('--reveal-delay', (i * 0.05) + 's');
+      try { reveal.observe(el); } catch (e) {}
+    });
   })
   .catch(() => { /* ignore */ });
 

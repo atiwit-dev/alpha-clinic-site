@@ -20,7 +20,7 @@
       <nav class="nav-links">
         <a href="#about">About</a>
         <a href="#services">Treatments</a>
-        <a href="#signature">Signature</a>
+        <a href="#signature">Programs</a>
         <a href="#doctor">Doctor</a>
         <a href="#reviews">Reviews</a>
         <a href="journal.html">Journal</a>
@@ -139,56 +139,44 @@
       </div>
     </section>
 
-    <section class="signature section" id="signature">
-      <div class="container two-col">
-        <div class="col signature-visual" aria-hidden="true">
-          <div class="signature-frame">
-            <span class="signature-letter">A</span>
-            <span class="signature-sub">Gold</span>
-          </div>
-        </div>
-        <div class="col">
-          <p class="eyebrow" id="signatureEyebrow">Signature Treatment</p>
-          <h2 id="signatureTitle">Alpha <em>Gold</em></h2>
-          <p class="lead" id="signatureLead">
-            ทรีตเมนต์เฉพาะของคลินิก ออกแบบเพื่อยกกระชับและคืนความเปล่งประกายในขั้นตอนเดียว
-            ผสานเทคโนโลยีหลายรูปแบบเข้าด้วยกัน เพื่อผลลัพธ์ที่ละเอียดอ่อนและเป็นธรรมชาติ
-          </p>
-          <div class="kv-grid" id="signatureFacts">
-            <div><span class="kv-k">Duration</span><span class="kv-v">60–90 min</span></div>
-            <div><span class="kv-k">Downtime</span><span class="kv-v">Minimal</span></div>
-            <div><span class="kv-k">Result</span><span class="kv-v">Lifted · Glowing</span></div>
-            <div><span class="kv-k">Best for</span><span class="kv-v">All skin types</span></div>
-          </div>
-          <a href="https://lin.ee/1i7Qgpv" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="signatureCta">Reserve via LINE</a>
+    <section class="programs section section-cream" id="signature">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow" id="programsEyebrow">Our Programs</p>
+          <h2 id="programsTitle">ทรีตเมนต์และเทคโนโลยี<br/><em>ที่เราให้บริการ</em></h2>
+          <p class="lead programs-lead" id="programsLead"></p>
+        </header>
+        <div class="programs-grid" id="programsGrid">
+          <!-- Brand/program logos loaded from _data/programs.json -->
         </div>
       </div>
     </section>
 
-    <section class="doctor section section-cream" id="doctor">
-      <div class="container two-col">
-        <div class="col">
-          <div class="doctor-portrait">
-            <img src="images/dr-benz.png" alt="นพ. ณัฐภัทร มีนชัยนันท์ — Medical Director" loading="lazy" id="doctorPhoto" />
-          </div>
-        </div>
-        <div class="col">
-          <p class="eyebrow">Medical Director</p>
-          <h2 id="doctorNameTh">นพ. ณัฐภัทร<br/><em>มีนชัยนันท์</em></h2>
-          <p class="doc-en" id="doctorNameEn">Dr. Bentz · Medical Director</p>
-          <p class="lead" id="doctorBio">
-            แพทย์ผู้เชี่ยวชาญด้านความงามและศัลยกรรมตกแต่ง
-            มุ่งเน้นการประเมินเฉพาะบุคคลและการสื่อสารอย่างใกล้ชิดกับคนไข้ทุกท่าน
-            เพื่อผลลัพธ์ที่สอดคล้องกับเอกลักษณ์ของแต่ละบุคคล
-          </p>
-          <ul class="credential-list" id="doctorCredentials">
-            <li>Aesthetic Medicine Specialist</li>
-            <li>Certified Injector — Allergan, Galderma</li>
-            <li>Energy-Based Device Specialist</li>
-          </ul>
+    <section class="doctors section section-cream" id="doctor">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow" id="doctorsEyebrow">Our Team</p>
+          <h2 id="doctorsTitle">Specialists who care for<br/><em>your transformation.</em></h2>
+          <p class="lead doctors-lead" id="doctorsLead"></p>
+        </header>
+        <div class="doctor-grid" id="doctorGrid">
+          <!-- Doctor cards loaded dynamically from _data/doctors.json -->
         </div>
       </div>
     </section>
+
+    <!-- Doctor detail modal (popup) -->
+    <div class="modal" id="doctorModal" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal-panel" role="document">
+        <button class="modal-close" data-close aria-label="ปิด">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+          </svg>
+        </button>
+        <div class="modal-body" id="modalBody"></div>
+      </div>
+    </div>
 
     <section class="reviews section section-dark" id="reviews">
       <div class="container">
@@ -308,7 +296,7 @@
           <ul class="footer-list">
             <li><a href="#about">About</a></li>
             <li><a href="#services">Treatments</a></li>
-            <li><a href="#signature">Alpha Gold</a></li>
+            <li><a href="#signature">Programs</a></li>
             <li><a href="#doctor">Medical Director</a></li>
             <li><a href="#reviews">Reviews</a></li>
             <li><a href="#journal">Journal</a></li>

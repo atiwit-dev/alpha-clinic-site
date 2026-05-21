@@ -1,0 +1,34 @@
+{
+  "section_eyebrow": "Our Team",
+  "section_title_line1": "Specialists who care for",
+  "section_title_line2": "your transformation.",
+  "section_lead": "ทีมแพทย์ผู้เชี่ยวชาญด้านความงามและศัลยกรรมตกแต่ง — มุ่งเน้นความเข้าใจในผิวของแต่ละบุคคล",
+  "items": [
+    {
+      "name_th": "นพ. ณัฐภัทร มีนชัยนันท์",
+      "name_en": "Dr. Bentz",
+      "title": "Medical Director",
+      "photo": "/images/dr-benz.png",
+      "bio_short": "Aesthetic Medicine Specialist",
+      "bio_full": "## ประวัติ\n\nแพทย์ผู้เชี่ยวชาญด้านความงามและศัลยกรรมตกแต่ง มุ่งเน้นการประเมินเฉพาะบุคคลและการสื่อสารอย่างใกล้ชิดกับคนไข้ทุกท่าน เพื่อผลลัพธ์ที่สอดคล้องกับเอกลักษณ์ของแต่ละบุคคล\n\n## แนวทางการทำงาน\n\n- ประเมินสภาพผิวและโครงสร้างใบหน้าเฉพาะบุคคล\n- ออกแบบโปรแกรมเฉพาะ ไม่ใช้แพ็คเกจสำเร็จรูป\n- ติดตามผลและปรับแผนตามการตอบสนอง\n\n## ปรัชญา\n\n> \"ความงามที่แท้จริงคือความสมดุล — การเสริมให้คุณเป็นตัวคุณในเวอร์ชั่นที่ดีที่สุด ไม่ใช่เปลี่ยนเป็นคนอื่น\"",
+      "specialties": [
+        { "text": "Anti-Aging" },
+        { "text": "Thread Lift" },
+        { "text": "Filler & Botox" },
+        { "text": "Energy-Based Devices" }
+      ],
+      "credentials": [
+        { "text": "Aesthetic Medicine Specialist" },
+        { "text": "Certified Injector — Allergan, Galderma" },
+        { "text": "Energy-Based Device Specialist (Thermage, Ulthera)" }
+      ],
+      "education": [
+        { "text": "M.D. — มหาวิทยาลัยชั้นนำของไทย" }
+      ],
+      "languages": [
+        { "text": "ไทย" },
+        { "text": "English" }
+      ]
+    }
+  ]
+}
