@@ -1,25 +1,40 @@
 /* ============================================================
    Hero slideshow — cycle through clinic photos
+   Slide list editable via Decap CMS (_data/hero_slides.json)
    ============================================================ */
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
   const heroBg = document.querySelector('.hero-bg');
   if (!heroBg) return;
 
-  // Build the slide list. First 21 are .jpg, last 7 are .png.
-  const heroSlides = Array.from({ length: 28 }, (_, i) => {
+  // Default hardcoded list as fallback (matches /images/hero/clinic-01.jpg … clinic-28.png)
+  const fallbackSlides = Array.from({ length: 28 }, (_, i) => {
     const n = String(i + 1).padStart(2, '0');
     const ext = i < 21 ? 'jpg' : 'png';
     return `images/hero/clinic-${n}.${ext}`;
   });
 
-  const SLIDE_MS = 4000;  // how long each slide is shown
-  const FADE_MS = 1500;   // crossfade duration (matches CSS transition)
+  // Try to load slide list from CMS-managed JSON
+  let heroSlides = fallbackSlides;
+  try {
+    const r = await fetch('_data/hero_slides.json', { cache: 'no-cache' });
+    if (r.ok) {
+      const data = await r.json();
+      if (data && Array.isArray(data.items) && data.items.length) {
+        const fromJson = data.items
+          .map(it => (it && it.image) ? String(it.image).replace(/^\//, '') : null)
+          .filter(Boolean);
+        if (fromJson.length) heroSlides = fromJson;
+      }
+    }
+  } catch (e) { /* fallback already set */ }
+
+  const SLIDE_MS = 4000;
+  const FADE_MS = 1500;
 
   const slides = heroSlides.map((src, i) => {
     const div = document.createElement('div');
     div.className = 'hero-slide';
     if (i < 3) {
-      // Eagerly load the first 3 to avoid flash on initial cycles
       div.style.backgroundImage = `url('${src}')`;
     } else {
       div.dataset.src = src;
@@ -27,6 +42,8 @@ window.addEventListener('DOMContentLoaded', () => {
     heroBg.appendChild(div);
     return div;
   });
+
+  if (!slides.length) return;
 
   const ensureLoaded = (i) => {
     const s = slides[i];
@@ -42,7 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setInterval(() => {
     const next = (current + 1) % slides.length;
     ensureLoaded(next);
-    ensureLoaded((next + 1) % slides.length); // pre-warm the one after
+    ensureLoaded((next + 1) % slides.length);
     slides[next].classList.add('is-active');
     const previous = current;
     setTimeout(() => slides[previous].classList.remove('is-active'), FADE_MS + 100);
@@ -195,6 +212,83 @@ const sectionObserver = new IntersectionObserver(entries => {
   });
 }, { rootMargin: '-45% 0px -50% 0px' });
 sections.forEach(s => sectionObserver.observe(s));
+
+/* ============================================================
+   Site content loader — Hero / Doctor / Reviews from JSON
+   ============================================================ */
+function _esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[c]);
+}
+function _nl2br(s) { return _esc(s).replace(/\n/g, '<br/>'); }
+function _setText(id, value) {
+  const el = document.getElementById(id);
+  if (el && value != null) el.textContent = value;
+}
+function _setHtml(id, value) {
+  const el = document.getElementById(id);
+  if (el && value != null) el.innerHTML = value;
+}
+function _setAttr(id, attr, value) {
+  const el = document.getElementById(id);
+  if (el && value != null) el.setAttribute(attr, value);
+}
+
+// Hero
+fetch('_data/hero.json', { cache: 'no-cache' })
+  .then(r => r.ok ? r.json() : null)
+  .then(d => {
+    if (!d) return;
+    _setText('heroEyebrow', d.eyebrow);
+    if (d.headline_line1 || d.headline_line2) {
+      _setHtml('heroHeadline', `${_esc(d.headline_line1 || '')}<br/><em>${_esc(d.headline_line2 || '')}</em>`);
+    }
+    if (d.lead) _setHtml('heroLead', _nl2br(d.lead));
+    _setText('heroCtaPrimary', d.cta_primary_text);
+    _setAttr('heroCtaPrimary', 'href', d.cta_primary_url);
+    _setText('heroCtaSecondary', d.cta_secondary_text);
+  })
+  .catch(() => { /* ignore — fallback HTML remains */ });
+
+// Doctor
+fetch('_data/doctor.json', { cache: 'no-cache' })
+  .then(r => r.ok ? r.json() : null)
+  .then(d => {
+    if (!d) return;
+    if (d.name_th) {
+      const parts = d.name_th.split(' ');
+      if (parts.length > 1) {
+        _setHtml('doctorNameTh', `${_esc(parts.slice(0, 2).join(' '))}<br/><em>${_esc(parts.slice(2).join(' '))}</em>`);
+      } else {
+        _setText('doctorNameTh', d.name_th);
+      }
+    }
+    _setText('doctorNameEn', d.name_en);
+    _setText('doctorBio', d.bio);
+    if (d.photo) _setAttr('doctorPhoto', 'src', d.photo);
+    if (Array.isArray(d.credentials) && d.credentials.length) {
+      const ul = document.getElementById('doctorCredentials');
+      if (ul) ul.innerHTML = d.credentials.map(c => `<li>${_esc(c.text || c)}</li>`).join('');
+    }
+  })
+  .catch(() => { /* ignore */ });
+
+// Reviews
+fetch('_data/reviews.json', { cache: 'no-cache' })
+  .then(r => r.ok ? r.json() : null)
+  .then(d => {
+    if (!d || !Array.isArray(d.items) || !d.items.length) return;
+    const grid = document.getElementById('reviewGrid');
+    if (!grid) return;
+    grid.innerHTML = d.items.map(r => `
+      <figure class="review">
+        <blockquote>"${_esc(r.quote || '')}"</blockquote>
+        <figcaption>— ${_esc(r.author || '')}${r.location ? ' · ' + _esc(r.location) : ''}</figcaption>
+      </figure>
+    `).join('');
+  })
+  .catch(() => { /* ignore */ });
 
 /* ============================================================
    Journal — load articles from articles.json (managed by Decap CMS)

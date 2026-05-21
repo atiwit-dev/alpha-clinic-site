@@ -18,12 +18,14 @@
   --ink-2: #1d1b17;
   --muted: #4f4c46;
 
-  --gold: #a87f50;
-  --gold-2: #b8956a;
-  --gold-soft: #d9c39c;
+  --gold: #b07c2a;
+  --gold-2: #cda04a;
+  --gold-soft: #e8c889;
+  --gold-deep: #8a5a18;
 
-  --line: rgba(28,26,23,0.16);
-  --line-soft: rgba(28,26,23,0.08);
+  --line: rgba(28,26,23,0.18);
+  --line-soft: rgba(28,26,23,0.10);
+  --line-gold: rgba(176, 124, 42, 0.35);
 
   --f-serif: 'Cormorant Garamond', 'Sarabun', Georgia, serif;
   --f-sans: 'Inter', 'Sarabun', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -71,12 +73,12 @@ h1, h2, h3 {
 h1 {
   font-size: clamp(52px, 8.5vw, 112px);
 }
-h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
+h1 em { font-style: italic; color: var(--gold); font-weight: 500; }
 
 h2 {
   font-size: clamp(36px, 5vw, 64px);
 }
-h2 em { font-style: italic; color: var(--gold); font-weight: 400; }
+h2 em { font-style: italic; color: var(--gold); font-weight: 500; }
 
 h3 {
   font-size: clamp(22px, 2vw, 26px);
@@ -87,10 +89,23 @@ h3 {
   font-family: var(--f-sans);
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 22px;
+  display: inline-block;
+  position: relative;
+  padding-left: 38px;
+}
+.eyebrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
 }
 
 .lead {
@@ -129,11 +144,13 @@ h3 {
   background: var(--ink);
   color: var(--white);
   border-color: var(--ink);
+  box-shadow: 0 4px 16px rgba(28, 26, 23, 0.12);
 }
 .btn-primary:hover {
   background: var(--gold);
   border-color: var(--gold);
   letter-spacing: 0.24em;
+  box-shadow: 0 8px 24px rgba(176, 124, 42, 0.35);
 }
 
 .btn-outline {
@@ -290,7 +307,7 @@ h3 {
   background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: saturate(1.05) brightness(0.88);
+  filter: saturate(1.10) contrast(1.04);
   transform: scale(1.04);
   will-change: opacity, transform;
 }
@@ -342,16 +359,11 @@ h3 {
   background:
     linear-gradient(
       100deg,
-      rgba(245, 239, 229, 1) 0%,
-      rgba(245, 239, 229, 0.98) 38%,
-      rgba(245, 239, 229, 0.85) 55%,
-      rgba(245, 239, 229, 0.45) 78%,
-      rgba(245, 239, 229, 0.12) 100%
-    ),
-    linear-gradient(
-      180deg,
-      transparent 50%,
-      rgba(255, 255, 255, 0.65) 100%
+      rgba(245, 239, 229, 0.98) 0%,
+      rgba(245, 239, 229, 0.94) 28%,
+      rgba(245, 239, 229, 0.55) 42%,
+      rgba(245, 239, 229, 0.12) 58%,
+      rgba(245, 239, 229, 0) 70%
     );
   z-index: 1;
   pointer-events: none;
@@ -476,9 +488,10 @@ h3 {
 .service-tag {
   font-family: var(--f-serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
   color: var(--gold);
-  margin-bottom: 22px;
+  margin-bottom: 24px;
   letter-spacing: 0.04em;
 }
 
@@ -515,13 +528,14 @@ h3 {
 .signature-visual {
   aspect-ratio: 4/5;
   background:
-    radial-gradient(ellipse at top, rgba(255,255,255,0.4), transparent 60%),
-    linear-gradient(160deg, var(--gold-soft) 0%, var(--gold-2) 60%, var(--gold) 100%);
+    radial-gradient(ellipse at top, rgba(255,255,255,0.45), transparent 60%),
+    linear-gradient(160deg, var(--gold-soft) 0%, var(--gold-2) 55%, var(--gold) 100%);
   position: relative;
   display: grid;
   place-items: center;
   overflow: hidden;
   border-radius: 8px;
+  box-shadow: 0 24px 60px rgba(176, 124, 42, 0.25);
 }
 .signature-visual::before {
   content: "";
@@ -599,7 +613,8 @@ h3 {
 .doc-en {
   font-family: var(--f-serif);
   font-style: italic;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 500;
   color: var(--gold);
   margin-bottom: 26px;
 }
@@ -620,7 +635,7 @@ h3 {
 }
 .credential-list li::before {
   content: "";
-  width: 28px; height: 1px;
+  width: 32px; height: 2px;
   background: var(--gold);
 }
 
@@ -657,15 +672,18 @@ h3 {
   content: "“";
   position: absolute;
   top: -16px; left: -8px;
-  font-size: 80px;
+  font-size: 96px;
   color: var(--gold);
   font-style: italic;
+  font-weight: 600;
   line-height: 1;
+  opacity: 0.85;
 }
 
 .review figcaption {
   font-size: 11px;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -755,9 +773,9 @@ h3 {
 }
 
 .article-meta {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.24em;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -1537,20 +1555,61 @@ h3 {
     background:
       linear-gradient(
         180deg,
-        rgba(250, 246, 238, 0.97) 0%,
-        rgba(250, 246, 238, 0.93) 38%,
-        rgba(250, 246, 238, 0.72) 68%,
-        rgba(250, 246, 238, 0.50) 100%
+        rgba(245, 239, 229, 0.96) 0%,
+        rgba(245, 239, 229, 0.88) 32%,
+        rgba(245, 239, 229, 0.45) 62%,
+        rgba(245, 239, 229, 0.10) 90%,
+        rgba(245, 239, 229, 0) 100%
       );
   }
-  .hero::after { height: 80px; }
-  .hero-lead { max-width: 100%; }
+  .hero::after { height: 60px; }
+  .hero-lead { max-width: 100%; font-size: 16px; }
+
+  /* Buttons smaller on tablet/mobile */
+  .hero-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .hero-cta .btn {
+    padding: 13px 26px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    width: auto;
+    align-self: flex-start;
+    text-align: center;
+  }
+  .hero-cta .btn-ghost { padding: 13px 0; width: auto; }
+  .btn { padding: 13px 26px; font-size: 11px; }
+  .btn-sm { padding: 9px 18px; font-size: 10px; }
 }
 
 @media (max-width: 600px) {
-  .hero { padding-top: 120px; padding-bottom: 96px; }
-  .hero-cta { flex-direction: column; align-items: stretch; }
-  .hero-cta .btn { text-align: center; }
+  .hero { padding-top: 120px; padding-bottom: 80px; }
+
+  /* Hero typography — smaller on phones */
+  .hero h1 { font-size: clamp(40px, 13vw, 64px); }
+  .hero-lead { font-size: 15px; line-height: 1.75; margin-bottom: 36px; }
+
+  /* Hero buttons — smaller, intrinsic width, gap between */
+  .hero-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .hero-cta .btn {
+    padding: 12px 24px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    width: auto;
+    align-self: flex-start;
+  }
+  .hero-cta .btn-ghost { padding: 12px 0; width: auto; }
+
+  /* Other mobile buttons (across the site) — slightly smaller */
+  .btn { padding: 13px 26px; font-size: 11px; }
+  .btn-sm { padding: 9px 18px; font-size: 10px; }
+
   .kv-grid { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; gap: 36px; }
 

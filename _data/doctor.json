@@ -1,0 +1,11 @@
+{
+  "name_th": "นพ. ณัฐภัทร มีนชัยนันท์",
+  "name_en": "Dr. Bentz · Medical Director",
+  "bio": "แพทย์ผู้เชี่ยวชาญด้านความงามและศัลยกรรมตกแต่ง มุ่งเน้นการประเมินเฉพาะบุคคลและการสื่อสารอย่างใกล้ชิดกับคนไข้ทุกท่าน เพื่อผลลัพธ์ที่สอดคล้องกับเอกลักษณ์ของแต่ละบุคคล",
+  "photo": "/images/dr-benz.png",
+  "credentials": [
+    { "text": "Aesthetic Medicine Specialist" },
+    { "text": "Certified Injector — Allergan, Galderma" },
+    { "text": "Energy-Based Device Specialist" }
+  ]
+}

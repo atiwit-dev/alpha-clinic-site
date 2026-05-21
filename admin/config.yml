@@ -14,7 +14,7 @@ locale: en
 
 collections:
   - name: articles
-    label: "บทความ Journal"
+    label: "📝 บทความ Journal"
     label_singular: "บทความ"
     files:
       - file: articles.json
@@ -48,8 +48,76 @@ collections:
               - { label: "ข้อความย่อ (แสดงบนการ์ด)", name: excerpt, widget: text }
               - { label: "เนื้อหาเต็ม (สำหรับอนาคต)", name: body, widget: markdown, required: false }
 
+  - name: hero_slides
+    label: "🖼️ รูปสไลด์โชว์ Hero"
+    files:
+      - file: _data/hero_slides.json
+        label: "รายการรูปสไลด์โชว์"
+        name: slides_list
+        fields:
+          - label: "รูปสไลด์"
+            name: items
+            widget: list
+            summary: "{{fields.image}}"
+            collapsed: true
+            min: 1
+            fields:
+              - { label: "รูป", name: image, widget: image, hint: "อัพโหลดรูป (แนะนำขนาด >1600px กว้าง) หรือเลือกจาก library" }
+              - { label: "คำอธิบายรูป (alt text)", name: alt, widget: string, required: false, default: "" }
+
+  - name: hero
+    label: "🏠 หน้าแรก (Hero)"
+    files:
+      - file: _data/hero.json
+        label: "ข้อความหน้าแรก"
+        name: hero_content
+        fields:
+          - { label: "ป้ายเล็กบน (Eyebrow)", name: eyebrow, widget: string, default: "Bangkok · Est. Premium Aesthetic Care" }
+          - { label: "หัวข้อใหญ่ บรรทัด 1", name: headline_line1, widget: string, default: "Inspiring" }
+          - { label: "หัวข้อใหญ่ บรรทัด 2 (italic ทอง)", name: headline_line2, widget: string, default: "Confidence" }
+          - { label: "ข้อความใต้หัวข้อ", name: lead, widget: text, default: "สร้างความงามอย่างสมดุลจากภายในสู่ภายนอก\nด้วยนวัตกรรมการรักษาทันสมัย มาตรฐานสากล และความใส่ใจระดับพรีเมียม" }
+          - { label: "ปุ่มหลัก — ข้อความ", name: cta_primary_text, widget: string, default: "Book via LINE" }
+          - { label: "ปุ่มหลัก — ลิงก์", name: cta_primary_url, widget: string, default: "https://lin.ee/1i7Qgpv" }
+          - { label: "ปุ่มรอง — ข้อความ", name: cta_secondary_text, widget: string, default: "Explore Treatments →" }
+
+  - name: reviews
+    label: "⭐ รีวิวลูกค้า"
+    files:
+      - file: _data/reviews.json
+        label: "รายการรีวิว"
+        name: reviews_list
+        fields:
+          - label: "รีวิว"
+            name: items
+            widget: list
+            summary: "{{fields.author}} — {{fields.location}}"
+            collapsed: true
+            min: 1
+            fields:
+              - { label: "ข้อความรีวิว", name: quote, widget: text, hint: "ไม่ต้องใส่เครื่องหมาย “ ” — ระบบใส่ให้อัตโนมัติ" }
+              - { label: "ชื่อผู้รีวิว", name: author, widget: string, hint: "เช่น K. Nattha หรือ J. Lee" }
+              - { label: "ที่อยู่/หมายเหตุ", name: location, widget: string, default: "Bangkok", required: false }
+
+  - name: doctor
+    label: "👨‍⚕️ ประวัติคุณหมอ"
+    files:
+      - file: _data/doctor.json
+        label: "ข้อมูลแพทย์"
+        name: doctor_info
+        fields:
+          - { label: "ชื่อ-นามสกุล (ไทย)", name: name_th, widget: string, default: "นพ. ณัฐภัทร มีนชัยนันท์" }
+          - { label: "ชื่อภาษาอังกฤษ + ตำแหน่ง", name: name_en, widget: string, default: "Dr. Bentz · Medical Director" }
+          - { label: "ประวัติย่อ (Bio)", name: bio, widget: text, default: "แพทย์ผู้เชี่ยวชาญด้านความงามและศัลยกรรมตกแต่ง มุ่งเน้นการประเมินเฉพาะบุคคลและการสื่อสารอย่างใกล้ชิดกับคนไข้ทุกท่าน เพื่อผลลัพธ์ที่สอดคล้องกับเอกลักษณ์ของแต่ละบุคคล" }
+          - { label: "รูปคุณหมอ", name: photo, widget: image, required: false, hint: "ไม่ใส่ก็ได้ ระบบใช้รูปเดิม" }
+          - label: "ใบรับรอง/ความเชี่ยวชาญ"
+            name: credentials
+            widget: list
+            summary: "{{fields.text}}"
+            fields:
+              - { label: "ข้อความ", name: text, widget: string }
+
   - name: info
-    label: "ข้อมูลคลินิก"
+    label: "📍 ข้อมูลคลินิก"
     label_singular: "ข้อมูล"
     files:
       - file: _data/site.json

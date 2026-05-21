@@ -1,0 +1,32 @@
+{
+  "items": [
+    { "image": "/images/hero/clinic-01.jpg", "alt": "Alpha Medical Clinic interior" },
+    { "image": "/images/hero/clinic-02.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-03.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-04.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-05.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-06.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-07.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-08.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-09.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-10.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-11.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-12.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-13.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-14.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-15.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-16.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-17.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-18.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-19.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-20.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-21.jpg", "alt": "" },
+    { "image": "/images/hero/clinic-22.png", "alt": "" },
+    { "image": "/images/hero/clinic-23.png", "alt": "" },
+    { "image": "/images/hero/clinic-24.png", "alt": "" },
+    { "image": "/images/hero/clinic-25.png", "alt": "" },
+    { "image": "/images/hero/clinic-26.png", "alt": "" },
+    { "image": "/images/hero/clinic-27.png", "alt": "" },
+    { "image": "/images/hero/clinic-28.png", "alt": "" }
+  ]
+}

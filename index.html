@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 </head>
 <body>
 
@@ -38,15 +38,15 @@
       <div class="hero-bg"></div>
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <p class="eyebrow">Bangkok · Est. Premium Aesthetic Care</p>
-        <h1>Inspiring<br/><em>Confidence</em></h1>
-        <p class="hero-lead">
+        <p class="eyebrow" id="heroEyebrow">Bangkok · Est. Premium Aesthetic Care</p>
+        <h1 id="heroHeadline">Inspiring<br/><em>Confidence</em></h1>
+        <p class="hero-lead" id="heroLead">
           สร้างความงามอย่างสมดุลจากภายในสู่ภายนอก<br/>
           ด้วยนวัตกรรมการรักษาทันสมัย มาตรฐานสากล และความใส่ใจระดับพรีเมียม
         </p>
         <div class="hero-cta">
-          <a href="https://lin.ee/1i7Qgpv" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book via LINE</a>
-          <a href="#services" class="btn btn-ghost">Explore Treatments →</a>
+          <a href="https://lin.ee/1i7Qgpv" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="heroCtaPrimary">Book via LINE</a>
+          <a href="#services" class="btn btn-ghost" id="heroCtaSecondary">Explore Treatments →</a>
         </div>
       </div>
       <div class="hero-marquee">
@@ -169,19 +169,19 @@
       <div class="container two-col">
         <div class="col">
           <div class="doctor-portrait">
-            <img src="images/dr-benz.png" alt="นพ. ณัฐภัทร มีนชัยนันท์ — Medical Director" loading="lazy" />
+            <img src="images/dr-benz.png" alt="นพ. ณัฐภัทร มีนชัยนันท์ — Medical Director" loading="lazy" id="doctorPhoto" />
           </div>
         </div>
         <div class="col">
           <p class="eyebrow">Medical Director</p>
-          <h2>นพ. ณัฐภัทร<br/><em>มีนชัยนันท์</em></h2>
-          <p class="doc-en">Dr. Bentz · Medical Director</p>
-          <p class="lead">
+          <h2 id="doctorNameTh">นพ. ณัฐภัทร<br/><em>มีนชัยนันท์</em></h2>
+          <p class="doc-en" id="doctorNameEn">Dr. Bentz · Medical Director</p>
+          <p class="lead" id="doctorBio">
             แพทย์ผู้เชี่ยวชาญด้านความงามและศัลยกรรมตกแต่ง
             มุ่งเน้นการประเมินเฉพาะบุคคลและการสื่อสารอย่างใกล้ชิดกับคนไข้ทุกท่าน
             เพื่อผลลัพธ์ที่สอดคล้องกับเอกลักษณ์ของแต่ละบุคคล
           </p>
-          <ul class="credential-list">
+          <ul class="credential-list" id="doctorCredentials">
             <li>Aesthetic Medicine Specialist</li>
             <li>Certified Injector — Allergan, Galderma</li>
             <li>Energy-Based Device Specialist</li>
@@ -196,7 +196,7 @@
           <p class="eyebrow eyebrow-light">Client Stories</p>
           <h2>What our clients <em>say.</em></h2>
         </header>
-        <div class="review-grid">
+        <div class="review-grid" id="reviewGrid">
           <figure class="review">
             <blockquote>
               "ประทับใจคุณหมอและทีมงานมากค่ะ ดูแลใส่ใจทุกขั้นตอน
