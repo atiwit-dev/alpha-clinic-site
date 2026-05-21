@@ -1,13 +1,16 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: atiwit-dev/alpha-clinic-site
   branch: main
+  base_url: https://alphamedicalclinic.pages.dev
+  auth_endpoint: /oauth/auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-site_url: https://alphamedicalclinic.netlify.app
-display_url: https://alphamedicalclinic.netlify.app
-logo_url: https://alphamedicalclinic.netlify.app/images/logo-cropped.png
+site_url: https://alphamedicalclinic.pages.dev
+display_url: https://alphamedicalclinic.pages.dev
+logo_url: https://alphamedicalclinic.pages.dev/images/logo-cropped.png
 
 publish_mode: simple
 locale: en
