@@ -3,382 +3,352 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coming Soon · Alpha Medical Clinic</title>
-  <meta name="description" content="เว็บไซต์ใหม่ของ Alpha Medical Clinic กำลังจะมาเร็วๆ นี้ — ระหว่างนี้ติดต่อเราได้ทาง LINE หรือโทรศัพท์" />
-  <meta name="robots" content="noindex, nofollow" />
-
-  <link rel="icon" type="image/png" href="/images/logo-cropped.png" />
+  <title>Alpha Medical Clinic — Inspiring Confidence</title>
+  <meta name="description" content="Alpha Medical Clinic — สร้างความงามอย่างสมดุลจากภายในสู่ภายนอก ด้วยนวัตกรรมการรักษาทันสมัย มาตรฐานสากล" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --white: #ffffff;
-      --cream: #f5efe5;
-      --cream-2: #faf6ee;
-      --ink: #15130f;
-      --ink-2: #1d1b17;
-      --muted: #4f4c46;
-      --gold: #b07c2a;
-      --gold-2: #cda04a;
-      --gold-soft: #e8c889;
-      --line: rgba(28,26,23,0.18);
-      --line-soft: rgba(28,26,23,0.10);
-      --f-serif: 'Cormorant Garamond', 'Sarabun', Georgia, serif;
-      --f-sans: 'Inter', 'Sarabun', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      height: 100%;
-    }
-
-    body {
-      font-family: var(--f-sans);
-      font-size: 17px;
-      font-weight: 500;
-      color: var(--ink-2);
-      background: var(--cream-2);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-
-    /* === Coming Soon Layout === */
-    .cs {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: clamp(32px, 5vw, 64px) clamp(20px, 4vw, 56px);
-      overflow: hidden;
-    }
-
-    /* Background slowly Ken-Burns clinic image */
-    .cs-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('/images/hero/clinic-01.jpg');
-      background-size: cover;
-      background-position: center;
-      filter: saturate(0.9) brightness(0.95);
-      transform: scale(1.06);
-      animation: cs-kenburns 24s ease-in-out infinite alternate;
-      will-change: transform;
-      z-index: 0;
-    }
-    @keyframes cs-kenburns {
-      from { transform: scale(1.06) translate3d(0, 0, 0); }
-      to   { transform: scale(1.18) translate3d(-2.5%, -2%, 0); }
-    }
-
-    /* Cream wash overlay so background is just subtle */
-    .cs-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at top, rgba(245, 239, 229, 0.88), rgba(245, 239, 229, 0.96) 70%),
-        linear-gradient(180deg, rgba(245, 239, 229, 0.92) 0%, rgba(245, 239, 229, 0.85) 100%);
-      z-index: 1;
-    }
-
-    /* Decorative gold blobs */
-    .cs-overlay::before,
-    .cs-overlay::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(60px);
-      pointer-events: none;
-    }
-    .cs-overlay::before {
-      top: 10%; right: -120px;
-      width: 480px; height: 480px;
-      background: radial-gradient(circle, rgba(176, 124, 42, 0.22), transparent 65%);
-    }
-    .cs-overlay::after {
-      bottom: -120px; left: -100px;
-      width: 420px; height: 420px;
-      background: radial-gradient(circle, rgba(232, 200, 137, 0.28), transparent 60%);
-    }
-
-    /* Card with content */
-    .cs-content {
-      position: relative;
-      z-index: 2;
-      max-width: 640px;
-      width: 100%;
-      padding: clamp(40px, 5vw, 64px) clamp(28px, 4vw, 56px);
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(28px) saturate(160%);
-      -webkit-backdrop-filter: blur(28px) saturate(160%);
-      border: 1px solid rgba(255, 255, 255, 0.75);
-      border-radius: 22px;
-      box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.7) inset,
-        0 30px 80px rgba(28, 26, 23, 0.12);
-      text-align: center;
-      animation: cs-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-    @keyframes cs-fade-up {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .cs-logo {
-      height: 68px;
-      width: auto;
-      margin: 0 auto 32px;
-      animation: cs-fade-up 1s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-
-    .cs-eyebrow {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 22px;
-      animation: cs-fade-up 1s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
-      opacity: 0;
-    }
-    .cs-eyebrow::before,
-    .cs-eyebrow::after {
-      content: "—";
-      color: var(--gold);
-      margin: 0 14px;
-    }
-
-    .cs h1 {
-      font-family: var(--f-serif);
-      font-weight: 400;
-      font-size: clamp(44px, 6vw, 72px);
-      line-height: 1.05;
-      letter-spacing: -0.015em;
-      color: var(--ink);
-      margin-bottom: 12px;
-      animation: cs-fade-up 1s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
-      opacity: 0;
-    }
-    .cs h1 em {
-      font-style: italic;
-      color: var(--gold);
-      font-weight: 500;
-      display: block;
-      margin-top: 4px;
-    }
-
-    .cs-lead {
-      font-size: clamp(15px, 1.3vw, 17px);
-      line-height: 1.8;
-      color: var(--ink-2);
-      max-width: 460px;
-      margin: 0 auto 36px;
-      animation: cs-fade-up 1s 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-      opacity: 0;
-    }
-
-    .cs-divider {
-      width: 60px;
-      height: 1px;
-      background: var(--gold);
-      margin: 0 auto 32px;
-      opacity: 0.6;
-      animation: cs-fade-up 1s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-
-    .cs-cta {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 36px;
-      animation: cs-fade-up 1s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-      opacity: 0;
-    }
-
-    .cs-btn {
-      display: inline-block;
-      padding: 14px 28px;
-      font-family: var(--f-sans);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      border: 1px solid transparent;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.35s ease;
-    }
-    .cs-btn-primary {
-      background: var(--ink);
-      color: var(--white);
-      border-color: var(--ink);
-      box-shadow: 0 6px 20px rgba(28, 26, 23, 0.18);
-    }
-    .cs-btn-primary:hover {
-      background: var(--gold);
-      border-color: var(--gold);
-      letter-spacing: 0.24em;
-      box-shadow: 0 10px 28px rgba(176, 124, 42, 0.35);
-      transform: translateY(-2px);
-    }
-    .cs-btn-outline {
-      background: rgba(255, 255, 255, 0.5);
-      border-color: var(--gold);
-      color: var(--ink);
-      backdrop-filter: blur(10px);
-    }
-    .cs-btn-outline:hover {
-      background: var(--gold);
-      color: var(--white);
-      letter-spacing: 0.24em;
-      transform: translateY(-2px);
-    }
-
-    .cs-info {
-      font-size: 13px;
-      line-height: 1.7;
-      color: var(--muted);
-      margin-bottom: 24px;
-      animation: cs-fade-up 1s 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-      opacity: 0;
-    }
-    .cs-info p + p { margin-top: 4px; }
-
-    .cs-social {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      align-items: center;
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
-      animation: cs-fade-up 1s 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-      opacity: 0;
-    }
-    .cs-social a {
-      border-bottom: 1px solid transparent;
-      padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .cs-social a:hover {
-      color: var(--gold);
-      border-bottom-color: var(--gold);
-    }
-    .cs-social-dot {
-      color: rgba(28, 26, 23, 0.25);
-      letter-spacing: 0;
-    }
-
-    /* Subtle pulsing dot at top right */
-    .cs-status {
-      position: absolute;
-      top: 24px;
-      right: 24px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      z-index: 3;
-    }
-    .cs-status::before {
-      content: "";
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 0 0 rgba(176, 124, 42, 0.6);
-      animation: cs-pulse 2s infinite;
-    }
-    @keyframes cs-pulse {
-      0%   { box-shadow: 0 0 0 0 rgba(176, 124, 42, 0.5); }
-      70%  { box-shadow: 0 0 0 10px rgba(176, 124, 42, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(176, 124, 42, 0); }
-    }
-
-    @media (max-width: 600px) {
-      .cs-status { top: 16px; right: 16px; padding: 6px 12px; font-size: 10px; }
-      .cs-cta { flex-direction: column; align-items: stretch; }
-      .cs-cta .cs-btn { text-align: center; }
-      .cs-eyebrow::before, .cs-eyebrow::after { margin: 0 8px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .cs-bg, .cs-status::before, .cs-content, .cs-logo,
-      .cs-eyebrow, .cs h1, .cs-lead, .cs-divider, .cs-cta,
-      .cs-info, .cs-social {
-        animation: none !important;
-        opacity: 1 !important;
-        transform: none !important;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css?v=6" />
 </head>
 <body>
-  <main class="cs">
-    <div class="cs-bg" aria-hidden="true"></div>
-    <div class="cs-overlay" aria-hidden="true"></div>
 
-    <div class="cs-status" aria-label="ปรับปรุงเว็บไซต์">Updating site</div>
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#top" class="brand">
+        <img src="images/logo-cropped.png" alt="Alpha Medical Clinic" class="brand-logo" />
+      </a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Treatments</a>
+        <a href="#signature">Programs</a>
+        <a href="#doctor">Doctor</a>
+        <a href="#reviews">Reviews</a>
+        <a href="journal.html">Journal</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Open menu" id="navToggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-    <div class="cs-content">
-      <img src="/images/logo-cropped.png" alt="Alpha Medical Clinic" class="cs-logo" />
+  <main id="top">
 
-      <p class="cs-eyebrow">Coming Soon</p>
-
-      <h1>
-        เร็วๆ นี้
-        <em>New experience</em>
-      </h1>
-
-      <p class="cs-lead">
-        เว็บไซต์โฉมใหม่ของ Alpha Medical Clinic กำลังจะเปิดตัว —
-        สวยขึ้น ใช้งานง่ายขึ้น และครบครันยิ่งกว่าเดิม
-        <br/><br/>
-        <strong>ระหว่างนี้ — ติดต่อเราโดยตรงได้</strong>
-      </p>
-
-      <div class="cs-divider" aria-hidden="true"></div>
-
-      <div class="cs-cta">
-        <a href="https://lin.ee/1i7Qgpv" target="_blank" rel="noopener noreferrer" class="cs-btn cs-btn-primary">
-          Chat on LINE
-        </a>
-        <a href="tel:+6621204012" class="cs-btn cs-btn-outline">
-          📞 (+66) 2-120-4012
-        </a>
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow" id="heroEyebrow">Bangkok · Est. Premium Aesthetic Care</p>
+        <h1 id="heroHeadline">Inspiring<br/><em>Confidence</em></h1>
+        <p class="hero-lead" id="heroLead">
+          สร้างความงามอย่างสมดุลจากภายในสู่ภายนอก<br/>
+          ด้วยนวัตกรรมการรักษาทันสมัย มาตรฐานสากล และความใส่ใจระดับพรีเมียม
+        </p>
+        <div class="hero-cta">
+          <a href="https://lin.ee/1i7Qgpv" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="heroCtaPrimary">Book via LINE</a>
+          <a href="#services" class="btn btn-ghost" id="heroCtaSecondary">Explore Treatments →</a>
+        </div>
       </div>
-
-      <div class="cs-info">
-        <p>📍 2597, 2599 Lat Phrao 93, Wangthonglang, Bangkok 10310</p>
-        <p>🕐 Wednesday – Monday · 10:00 – 19:00</p>
-        <p>✉️ service@alphamedicalclinicthailand.com</p>
+      <div class="hero-marquee">
+        <span>Anti-Aging</span><span>·</span>
+        <span>Thread Lift</span><span>·</span>
+        <span>Thermage FLX</span><span>·</span>
+        <span>Ulthera SPT</span><span>·</span>
+        <span>Discovery Pico</span><span>·</span>
+        <span>Alpha Gold</span><span>·</span>
+        <span>EMFACE</span>
       </div>
+    </section>
 
-      <div class="cs-social">
-        <a href="https://www.facebook.com/alphamedicalclinic93" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <span class="cs-social-dot">·</span>
-        <a href="https://www.instagram.com/alphamedicalclinic/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <span class="cs-social-dot">·</span>
-        <a href="https://www.tiktok.com/@alphamedicalclinic93" target="_blank" rel="noopener noreferrer">TikTok</a>
+    <section class="about section" id="about">
+      <div class="container two-col">
+        <div class="col">
+          <p class="eyebrow" id="aboutEyebrow">About Alpha</p>
+          <h2 id="aboutTitle">Premium care, designed around <em>you</em>.</h2>
+        </div>
+        <div class="col">
+          <p class="lead" id="aboutLead">
+            ที่ Alpha Medical Clinic เราเชื่อว่าความงามที่แท้จริงเริ่มต้นจากความสมดุล
+            ทีมแพทย์ผู้เชี่ยวชาญและเทคโนโลยีระดับโลกพร้อมดูแลคุณอย่างใส่ใจในทุกขั้นตอน
+          </p>
+          <p id="aboutBody">
+            เราคัดสรรนวัตกรรมที่ได้รับการรับรอง — Allergan, Juvederm, Thermage FLX,
+            Ulthera SPT, Discovery Pico — ผสานกับการประเมินเฉพาะบุคคล
+            เพื่อผลลัพธ์ที่เป็นธรรมชาติและยั่งยืน
+          </p>
+          <ul class="pill-list" id="aboutPills">
+            <li>มาตรฐานสากล</li>
+            <li>แพทย์ผู้เชี่ยวชาญ</li>
+            <li>Premium Care</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="services section section-dark" id="services">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow eyebrow-light" id="servicesEyebrow">Our Treatments</p>
+          <h2 id="servicesTitle">Curated treatments,<br/><em>tailored outcomes.</em></h2>
+        </header>
+
+        <div class="service-grid" id="servicesGrid">
+          <article class="service-card">
+            <p class="service-tag">01 / Anti-Aging</p>
+            <h3>ฟื้นฟูวัยและริ้วรอย</h3>
+            <ul>
+              <li>Thread Lift</li>
+              <li>PRP — Platelet-Rich Plasma</li>
+              <li>Thermage FLX</li>
+              <li>Botox</li>
+              <li>Filler</li>
+            </ul>
+            <a href="#contact" class="link-arrow">ปรึกษาแพทย์ →</a>
+          </article>
+
+          <article class="service-card">
+            <p class="service-tag">02 / Aesthetic</p>
+            <h3>เสริมความงามเฉพาะบุคคล</h3>
+            <ul>
+              <li>Alpha Gold — Signature Treatment</li>
+              <li>EMFACE</li>
+              <li>Profhilo / Restylane Skinboosters</li>
+              <li>Customized Beauty Plan</li>
+            </ul>
+            <a href="#contact" class="link-arrow">ปรึกษาแพทย์ →</a>
+          </article>
+
+          <article class="service-card">
+            <p class="service-tag">03 / Dermatology</p>
+            <h3>ผิวพรรณและเลเซอร์</h3>
+            <ul>
+              <li>Permanent Laser Hair Removal</li>
+              <li>Ulthera SPT</li>
+              <li>Discovery Pico Laser</li>
+              <li>StraWalker PQX</li>
+            </ul>
+            <a href="#contact" class="link-arrow">ปรึกษาแพทย์ →</a>
+          </article>
+        </div>
+
+        <p class="brand-strip">
+          <span>Allergan</span><span>Juvederm</span><span>Dysport</span>
+          <span>Radiesse</span><span>Xeomin</span><span>Restylane</span>
+          <span>Thermage FLX</span><span>Ulthera SPT</span><span>Discovery Pico</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="programs section section-cream" id="signature">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow" id="programsEyebrow">Our Programs</p>
+          <h2 id="programsTitle">ทรีตเมนต์และเทคโนโลยี<br/><em>ที่เราให้บริการ</em></h2>
+          <p class="lead programs-lead" id="programsLead"></p>
+        </header>
+        <div class="programs-grid" id="programsGrid">
+          <!-- Brand/program logos loaded from _data/programs.json -->
+        </div>
+      </div>
+    </section>
+
+    <section class="doctors section section-cream" id="doctor">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow" id="doctorsEyebrow">Our Team</p>
+          <h2 id="doctorsTitle">Specialists who care for<br/><em>your transformation.</em></h2>
+          <p class="lead doctors-lead" id="doctorsLead"></p>
+        </header>
+        <div class="doctor-grid" id="doctorGrid">
+          <!-- Doctor cards loaded dynamically from _data/doctors.json -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Form modal (confirm + success + error) -->
+    <div class="modal" id="formModal" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal-panel modal-panel-form" role="document">
+        <button class="modal-close" data-close aria-label="ปิด">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+          </svg>
+        </button>
+        <div id="formModalContent"></div>
       </div>
     </div>
+
+    <!-- Doctor detail modal (popup) -->
+    <div class="modal" id="doctorModal" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal-panel" role="document">
+        <button class="modal-close" data-close aria-label="ปิด">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+          </svg>
+        </button>
+        <div class="modal-body" id="modalBody"></div>
+      </div>
+    </div>
+
+    <section class="reviews section section-dark" id="reviews">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow eyebrow-light">Client Stories</p>
+          <h2>What our clients <em>say.</em></h2>
+        </header>
+        <div class="review-grid" id="reviewGrid">
+          <figure class="review">
+            <blockquote>
+              "ประทับใจคุณหมอและทีมงานมากค่ะ ดูแลใส่ใจทุกขั้นตอน
+              อธิบายละเอียด ทำให้รู้สึกมั่นใจตั้งแต่ครั้งแรกที่เข้ามา
+              ผลลัพธ์ดูเป็นธรรมชาติ ไม่เปลี่ยนหน้า"
+            </blockquote>
+            <figcaption>— K. Nattha · Bangkok</figcaption>
+          </figure>
+          <figure class="review">
+            <blockquote>
+              "Best clinic experience in Bangkok. Dr. Bentz takes the time
+              to understand your goals and the result feels like the best
+              version of yourself. Highly recommended."
+            </blockquote>
+            <figcaption>— J. Lee · Returning Client</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact">
+      <div class="container">
+        <header class="section-head contact-head">
+          <p class="eyebrow">Visit Us</p>
+          <h2>Begin your <em>consultation.</em></h2>
+          <p class="lead">นัดหมายเข้าพบแพทย์เพื่อประเมินและออกแบบโปรแกรมเฉพาะของคุณ — หรือทักทาย LINE เพื่อปรึกษาทันที</p>
+          <div class="contact-quick">
+            <a href="https://lin.ee/1i7Qgpv" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Chat on LINE</a>
+            <a href="tel:+6621204012" class="btn btn-outline">📞 (+66) 2-120-4012</a>
+          </div>
+        </header>
+        <div class="contact-form-wrap">
+          <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact" />
+            <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" required />
+            </label>
+            <label>
+              <span>Phone</span>
+              <input type="tel" name="phone" required />
+            </label>
+            <label>
+              <span>Email (optional)</span>
+              <input type="email" name="email" />
+            </label>
+            <label>
+              <span>Treatment of interest</span>
+              <select name="treatment">
+                <option>Anti-Aging</option>
+                <option>Aesthetic / Alpha Gold</option>
+                <option>Dermatology / Laser</option>
+                <option>Not sure — please advise</option>
+              </select>
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea name="message" rows="4"></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary btn-block">Request Consultation</button>
+            <p class="form-status" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal section section-cream" id="journal">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Journal</p>
+          <h2>Insights & <em>knowledge.</em></h2>
+        </header>
+
+        <div class="article-grid" id="articleGrid">
+          <!-- Articles loaded dynamically from articles.json (managed in Decap CMS) -->
+        </div>
+
+        <div class="journal-more">
+          <a href="journal.html" class="btn btn-outline">View All Articles</a>
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-col footer-brand-col">
+          <img src="images/logo-cropped.png" alt="Alpha Medical Clinic" class="brand-logo brand-logo-footer" />
+          <p class="footer-tag">Inspiring Confidence — สร้างความงามอย่างสมดุล จากภายในสู่ภายนอก</p>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-heading">Explore</p>
+          <ul class="footer-list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Treatments</a></li>
+            <li><a href="#signature">Programs</a></li>
+            <li><a href="#doctor">Medical Director</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#journal">Journal</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-heading">Visit</p>
+          <p class="footer-line">2597, 2599 Lat Phrao 93,<br/>Wangthonglang,<br/>Bangkok 10310</p>
+          <p class="footer-line">Wed – Mon · 10:00 – 19:00</p>
+          <p class="footer-line muted">ปิดทุกวันอังคาร</p>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-heading">Connect</p>
+          <p class="footer-line"><a href="tel:+6621204012">(+66) 2-120-4012</a></p>
+          <p class="footer-line"><a href="tel:+66631467168">(+66) 6-3146-7168</a></p>
+          <p class="footer-line"><a href="mailto:service@alphamedicalclinicthailand.com">service@alphamedicalclinicthailand.com</a></p>
+          <a href="https://lin.ee/1i7Qgpv" target="_blank" rel="noopener noreferrer" class="footer-line-cta">Chat on LINE →</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="muted small">© 2026 Alpha Medical Clinic. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/alphamedicalclinic93" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <span class="footer-social-dot">·</span>
+          <a href="https://www.instagram.com/alphamedicalclinic/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <span class="footer-social-dot">·</span>
+          <a href="https://www.tiktok.com/@alphamedicalclinic93" target="_blank" rel="noopener noreferrer">TikTok</a>
+        </div>
+        <a href="#top" class="back-to-top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating quick-contact buttons -->
+  <div class="fab" id="fab" aria-label="Quick contact">
+    <a href="tel:+6621204012" class="fab-btn" aria-label="Call (+66) 2-120-4012" data-tip="Call">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+      </svg>
+    </a>
+    <a href="https://lin.ee/1i7Qgpv" target="_blank" rel="noopener noreferrer" class="fab-btn fab-line" aria-label="Chat on LINE" data-tip="LINE">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+        <path d="M19.95 9.95c0-4.42-4.46-8.03-9.95-8.03S.05 5.53.05 9.95c0 3.97 3.53 7.29 8.3 7.92.32.07.76.21.87.49.1.25.07.64.03.89l-.14.85c-.04.25-.2.98.86.53 1.06-.44 5.71-3.36 7.79-5.76 1.43-1.57 2.18-3.18 2.18-4.92zM6.66 12.4H4.78c-.27 0-.49-.22-.49-.49v-3.76c0-.27.22-.49.49-.49s.49.22.49.49v3.26h1.39c.27 0 .49.22.49.49s-.22.5-.49.5zm1.9-.49c0 .27-.22.49-.49.49s-.49-.22-.49-.49V8.15c0-.27.22-.49.49-.49s.49.22.49.49zm4.55 0c0 .21-.13.4-.33.47-.05.02-.11.02-.16.02-.16 0-.31-.07-.4-.2l-1.92-2.61v2.32c0 .27-.22.49-.49.49-.27 0-.49-.22-.49-.49V8.15c0-.21.13-.4.34-.47.05-.01.1-.02.15-.02.15 0 .31.08.4.2l1.92 2.61V8.15c0-.27.22-.49.49-.49s.49.22.49.49zm3.06-2.37c.27 0 .49.22.49.49s-.22.49-.49.49h-1.39v.9h1.39c.27 0 .49.22.49.49s-.22.49-.49.49h-1.39v.9h1.39c.27 0 .49.22.49.49s-.22.49-.49.49h-1.88c-.27 0-.49-.22-.49-.49V8.15c0-.27.22-.49.49-.49h1.88c.27 0 .49.22.49.49s-.22.49-.49.49h-1.39v.9z"/>
+      </svg>
+    </a>
+  </div>
+
+  <script src="main.js?v=4"></script>
 </body>
 </html>
